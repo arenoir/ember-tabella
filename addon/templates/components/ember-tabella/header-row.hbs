@@ -1,0 +1,10 @@
+{{#each columns as |column|}}
+  {{component column.headerTemplateName
+    column=column
+    height=height
+    scrollLeft=scrollLeft
+    columnMode=columnMode
+    columnsFillTable=columnsFillTable
+    toggleTableCollapse='toggleTableCollapse'
+  }}
+{{/each}}

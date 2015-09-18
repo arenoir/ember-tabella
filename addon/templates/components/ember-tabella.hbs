@@ -1,0 +1,20 @@
+{{#if hasHeader}}
+  <div class="ember-tabella__header">
+    {{ember-tabella/header-row 
+      columns=_columns 
+      height=headerHeight 
+      width=headerRowWith
+      scrollLeft=scrollLeft 
+    }}
+  </div>
+{{/if}}
+
+{{ember-tabella/body 
+  rows=content 
+  columns=_columns 
+  height=bodyHeight 
+  width=rowWidth 
+  rowWidth=rowWidth
+  rowHeight=rowHeight
+  scrollLeft=scrollLeft
+  scroll-change=(action "scrollChange")}}

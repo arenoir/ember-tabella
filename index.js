@@ -2,5 +2,8 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-tabella'
+  name: 'ember-tabella',
+  included: function(app) {
+    this._super.included(app);
+  }
 };

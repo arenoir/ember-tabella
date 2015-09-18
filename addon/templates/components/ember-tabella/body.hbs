@@ -1,0 +1,17 @@
+{{#ember-collection 
+  items=rows 
+  cell-layout=(fixed-grid-layout width rowHeight) 
+  estimated-height=height
+  estimated-width=width
+  buffer=15
+  scroll-change=(action "scrollChange")
+  as |item index|}}
+
+  {{ember-tabella/body-row 
+    row=item 
+    index=index 
+    columns=columns 
+    scrollLeft=scrollLeft 
+    offsetLeft=fixedColumnsWidth
+  }}
+{{/ember-collection}}

@@ -1,0 +1,79 @@
+@import 'mixins';
+
+.ember-tabella {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  outline: 0;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid #ddd;
+
+  &__header {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__header-row {
+    position: relative;
+  }
+
+  &__header-column {
+    float: left;
+    height: inherit;
+    position: relative;
+    border-right: 1px solid #ccc;
+    overflow: hidden;
+    white-space: nowrap;
+    @include box-sizing();
+    
+    &--fixed {
+      background-color: #fff;
+      z-index: 2;
+    }
+    
+    &--resizable {
+      &__inner {
+      }
+    }
+  }
+
+  &__header-resize-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 5px;
+    cursor: col-resize;
+    overflow: hidden;
+  }
+
+  &__body {
+    position: relative;
+  }
+
+
+  &__body-row {
+    height: inherit;
+    width: inherit;
+    position: relative;
+  }
+
+
+  &__body-column {
+    float: left;
+    height: inherit;
+    position: relative;
+    border-right: 1px solid #ccc;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: #fff;
+    @include box-sizing();
+
+    &--fixed {
+      left: 0;
+      z-index: 2;
+    }
+  }
+
+}

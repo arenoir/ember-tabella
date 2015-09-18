@@ -1,0 +1,9 @@
+<div class="ember-tabella__cell-inner">
+  <div class="ember-tabella__header-column__content" {{action "sortByColumn" column}}>
+    {{column.headerCellName}}
+  </div>
+</div>
+
+{{#if column.isResizable}}
+  {{ember-tabella/header-resize-handle onResize=(action "resize")}}
+{{/if}}
