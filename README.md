@@ -2,6 +2,10 @@
 
 This README outlines the details of collaborating on this Ember addon.
 
+## Demo
+
+[arenoir.github.io/ember-tabella](http://arenoir.github.io/ember-tabella/)
+
 ## Installation
 
 * `git clone` this repository
