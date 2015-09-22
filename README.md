@@ -4,6 +4,8 @@ Table component for ember build using ember-collection.
 
 [![Build Status](https://travis-ci.org/arenoir/ember-tabella.svg?branch=master)](https://travis-ci.org/arenoir/ember-tabella) [![Code Climate](https://codeclimate.com/github/arenoir/ember-tabella/badges/gpa.svg)](https://codeclimate.com/github/arenoir/ember-tabella)
 
+This addon is a work in progress. It has an api based on ember table without the two way data bindings.
+
 ## Dependencies
 
 * ember >= 1.13
