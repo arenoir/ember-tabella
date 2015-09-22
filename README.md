@@ -1,6 +1,15 @@
 # Ember-tabella
 
-This README outlines the details of collaborating on this Ember addon.
+Table component for ember build using ember-collection. 
+
+[![Build Status](https://travis-ci.org/arenoir/ember-tabella.svg?branch=master)](https://travis-ci.org/arenoir/ember-tabella) [![Code Climate](https://codeclimate.com/github/arenoir/ember-tabella/badges/gpa.svg)](https://codeclimate.com/github/arenoir/ember-tabella)
+
+## Dependencies
+
+* ember >= 1.13
+* [ember-collection](https://github.com/emberjs/ember-collection)
+
+
 
 ## Demo
 
