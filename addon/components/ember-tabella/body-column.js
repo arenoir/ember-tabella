@@ -9,6 +9,8 @@ export default Component.extend(columnStyle, {
   classNames: 'ember-tabella__body-column',
   classNameBindings: ['column.textAlign', 'column.isFixed:ember-tabella__body-column--fixed'],
   attributeBindings: 'style',
+  scrollLeft: 0,
+  scrollTop: 0,
 
   content: computed('row', 'column', function() {
     let row    = this.get('row');

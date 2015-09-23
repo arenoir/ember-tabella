@@ -27,6 +27,10 @@ export default Component.extend({
   resolvedContent: [],
   attributeBindings: ['style'],
   columns: null,
+  sortProperties: [],
+  isSortReversed: false,
+  scrollLeft: 0,
+  scrollTop: 0,
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -131,6 +135,10 @@ export default Component.extend({
         this.$('.ember-tabella__header:first').scrollLeft(left);
         this._left = left;
       }
+    },
+
+    onSort(sortProperties) {
+      this.sendAction('on-sort', sortProperties);
     }
   }
 });

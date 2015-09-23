@@ -3,12 +3,18 @@ import Ember from 'ember';
 import ColumnDefinition from 'ember-tabella/models/column';
 import {randomNumber, randomDate} from '../utils/random';
 
+const {computed, isEqual} = Ember;
+
 export default Ember.Controller.extend({
+  sortProperties: [],
+  isSortReversed: false,
+  
   tableColumns: Ember.computed(function() {
     var dateColumn = ColumnDefinition.create({
       width: 150,
       textAlign: 'text-align-left',
       headerCellName: 'Date',
+      sortProperties:['date', 'high:desc'],
       getContent: function(row) {
         return row.get('date').toDateString();
       }
@@ -24,6 +30,7 @@ export default Ember.Controller.extend({
     var highColumn = ColumnDefinition.create({
       width: 200,
       headerCellName: 'High',
+      sortProperties:['high'],
       getContent: function(row) {
         return row.get('high').toFixed(2);
       }
@@ -45,8 +52,8 @@ export default Ember.Controller.extend({
     return [dateColumn, openColumn, highColumn, lowColumn, closeColumn];
   }),
 
-  tableContent: Ember.computed(function() {
-    var content = [];
+  _tableContent: computed(function() {
+    var content = Ember.A([]);
     var date;
     for (var i = 0; i < 5000; i++) {
       date = randomDate(new Date(2000, 1, 5), new Date(2012, 2, 2));
@@ -65,5 +72,34 @@ export default Ember.Controller.extend({
     //     resolve(content);
     //   }, 500); // 3 second delay, wooh, your server is slow!!!
     // });
-  })
+  }),
+
+  sortedContent: computed.sort('_tableContent', 'sortProperties'),
+
+  tableContent: computed('sortedContent.[]', 'isSortReversed', function() {
+    var content = this.get('sortedContent');
+    
+    if (this.get('isSortReversed')) {
+      return Ember.A(content.toArray().reverse());
+    }
+
+    return content;
+  }),
+
+
+  actions: {
+    sort(sortProperties) {
+      let current = this.get('sortProperties');
+
+      if (isEqual(current.toString(), sortProperties.toString())) {
+        let toggle = !this.get('isSortReversed');
+        this.set('isSortReversed', toggle);
+      } else {
+        this.setProperties({
+          sortProperties: sortProperties,
+          isSortReversed: false
+        })
+      }
+    }
+  }
 });
