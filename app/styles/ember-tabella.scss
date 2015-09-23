@@ -26,6 +26,29 @@
     overflow: hidden;
     white-space: nowrap;
     @include box-sizing();
+
+    &--sortable {
+      cursor: pointer;
+
+      &:after {
+        content: "↕";
+        position: absolute;
+        top: 0;
+        right: 5px;
+      }
+    }
+
+    &--sorted-asc {
+      &:after {
+        content: "↑";
+      }
+    }
+
+    &--sorted-desc {
+      &:after {
+        content: "↓";
+      }
+    }
     
     &--fixed {
       background-color: #fff;

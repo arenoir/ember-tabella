@@ -13,7 +13,7 @@ export default Component.extend(columnStyle, {
   classNameBindings: [
     'isSortable:ember-tabella__header-column--sortable',
     'isSorted:ember-tabella__header-column--sorted',
-    '_isSortReversed:ember-tabella__header-column--sorted-desc',
+    'sortedClassName',
     'isResizable:ember-tabella__header-column--resizable',
     'column.isFixed:ember-tabella__header-column--fixed'
   ],
@@ -38,6 +38,18 @@ export default Component.extend(columnStyle, {
     }
 
     return isEqual(sp.toString(), csp.toString());
+  }),
+
+  sortedClassName: computed('isSorted', '_isSortReversed', function() {
+    if (!this.get('isSorted')) {
+      return;
+    }
+
+    if (this.get('_isSortReversed')) {
+      return 'ember-tabella__header-column--sorted-desc';
+    }
+
+    return 'ember-tabella__header-column--sorted-asc';
   }),
 
   actions: {

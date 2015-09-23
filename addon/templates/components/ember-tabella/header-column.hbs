@@ -1,7 +1,5 @@
-<div class="ember-tabella__cell-inner">
-  <div class="ember-tabella__header-column__content" {{action "sort"}}>
-    {{column.headerCellName}}
-  </div>
+<div class="ember-tabella__header-column__title" {{action "sort"}}>
+  {{column.headerCellName}}
 </div>
 
 {{#if column.isResizable}}
