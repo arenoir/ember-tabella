@@ -1,6 +1,6 @@
 {
   "name": "ember-tabella",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Table component utilizing ember-collection with API based on ember-table.",
   "directories": {
     "doc": "doc",
