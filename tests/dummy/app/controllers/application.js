@@ -67,11 +67,6 @@ export default Ember.Controller.extend({
       }));
     }
     return content;
-    // return new Ember.RSVP.Promise(function(resolve){
-    //   setTimeout(function(){ 
-    //     resolve(content);
-    //   }, 500); // 3 second delay, wooh, your server is slow!!!
-    // });
   }),
 
   sortedContent: computed.sort('_tableContent', 'sortProperties'),
@@ -98,7 +93,7 @@ export default Ember.Controller.extend({
         this.setProperties({
           sortProperties: sortProperties,
           isSortReversed: false
-        })
+        });
       }
     }
   }
