@@ -17,6 +17,10 @@ export default Component.extend({
   }),
 
   actions: {
+    columnClicked(column, model) {
+      this.sendAction('column-clicked', column, model);
+    },
+
     scrollChange(left, top) {
       this.sendAction('scroll-change', left, top);
     }

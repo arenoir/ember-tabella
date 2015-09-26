@@ -2,7 +2,7 @@ import Ember from 'ember';
 import layout from '../../templates/components/ember-tabella/header-column';
 import columnStyle from '../../mixins/column-style';
 
-const {Component, computed, isEmpty, isEqual} = Ember;
+const {Component, computed, isEqual} = Ember;
 
 export default Component.extend(columnStyle, {
   layout: layout,
@@ -24,32 +24,36 @@ export default Component.extend(columnStyle, {
   minWidth: computed.readOnly('column.minWidth'),
   maxWidth: computed.readOnly('column.maxWidth'),
   isResizable: computed.readOnly('column.isResizable'),
-  sortProperties: [],
+  sortedColumn: null,
   isSortable: computed.notEmpty('column.sortProperties'),
   isSortReversed: false,
   _isSortReversed: computed.and('isSortReversed', 'isSorted'),
   
-  isSorted: computed('sortProperties', 'column.sortProperties', function() {
-    let sp = this.get('sortProperties');
-    let csp = this.get('column.sortProperties');
-
-    if (isEmpty(csp)) {
-      return false;
-    }
-
-    return isEqual(sp.toString(), csp.toString());
+  isSorted: computed('sortedColumn', 'column', function() {
+    let scolumn = this.get('sortedColumn');
+    let column  = this.get('column');
+    
+    return isEqual(scolumn, column);
   }),
 
-  sortedClassName: computed('isSorted', '_isSortReversed', function() {
+  sortDirection: computed('isSorted', '_isSortReversed', function() {
     if (!this.get('isSorted')) {
+      return null;
+    }
+    if (this.get('_isSortReversed')) {
+      return 'desc';
+    }
+    return 'asc';
+  }),
+
+  sortedClassName: computed('sortDirection', function() {
+    let direction = this.get('sortDirection');
+
+    if (!direction) {
       return;
     }
 
-    if (this.get('_isSortReversed')) {
-      return 'ember-tabella__header-column--sorted-desc';
-    }
-
-    return 'ember-tabella__header-column--sorted-asc';
+    return `ember-tabella__header-column--sorted-${direction}`;
   }),
 
   actions: {
@@ -65,9 +69,10 @@ export default Component.extend(columnStyle, {
         return;
       }
 
-      let sort = this.get('column.sortProperties');
+      let column = this.get('column');
+      let desc   = !this.get('isSortReversed');
 
-      this.sendAction('on-sort', sort);
+      this.sendAction('on-sort', column, desc);
     }
   }
 });

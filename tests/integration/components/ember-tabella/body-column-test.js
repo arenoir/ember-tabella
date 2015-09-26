@@ -14,14 +14,14 @@ test('it renders', function(assert) {
     contentPath: 'name'
   });
 
-  let row = Ember.Object.create({
+  let model = Ember.Object.create({
     name: 'my name'
   });
   
   this.set('column', column);
-  this.set('row', row);
+  this.set('model', model);
 
-  this.render(hbs`{{ember-tabella/body-column column=column row=row}}`);
+  this.render(hbs`{{ember-tabella/body-column column=column model=model}}`);
 
 
   assert.equal(this.$().text().trim(), 'my name', 'content based on contentPath');

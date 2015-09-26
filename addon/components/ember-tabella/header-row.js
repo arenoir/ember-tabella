@@ -13,7 +13,7 @@ export default Component.extend({
   scrollTop: 0,
   classNames: ['ember-tabella__header-row'],
   attributeBindings: ['style'],
-  sortProperties: [],
+  sortedColumn: null,
   isSortReversed: false,
   
   style: computed('width', 'height', function() {
@@ -24,8 +24,8 @@ export default Component.extend({
   }),
 
   actions: {
-    onSort(sortProperties) {
-      this.sendAction('on-sort', sortProperties);
+    onSort(column, desc) {
+      this.sendAction('on-sort', column, desc);
     }
   }
 });

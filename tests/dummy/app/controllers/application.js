@@ -6,11 +6,13 @@ import {randomNumber, randomDate} from '../utils/random';
 const {computed, isEqual} = Ember;
 
 export default Ember.Controller.extend({
-  sortProperties: [],
-  isSortReversed: false,
+  queryParams: ['_sort', '_desc'],
+  _sort: '',
+  _desc: false,
   
   tableColumns: Ember.computed(function() {
     var dateColumn = ColumnDefinition.create({
+      id: 'date',
       width: 150,
       textAlign: 'text-align-left',
       headerCellName: 'Date',
@@ -20,6 +22,7 @@ export default Ember.Controller.extend({
       }
     });
     var openColumn = ColumnDefinition.create({
+      id: 'open',
       width: 75,
       headerCellName: 'Open',
       isResizable: true,
@@ -28,6 +31,7 @@ export default Ember.Controller.extend({
       }
     });
     var highColumn = ColumnDefinition.create({
+      id: 'high',
       width: 200,
       headerCellName: 'High',
       sortProperties:['high'],
@@ -36,6 +40,7 @@ export default Ember.Controller.extend({
       }
     });
     var lowColumn = ColumnDefinition.create({
+      id: 'low',
       width: 200,
       headerCellName: 'Low',
       getContent: function(row) {
@@ -43,16 +48,17 @@ export default Ember.Controller.extend({
       }
     });
     var closeColumn = ColumnDefinition.create({
+      id: 'close',
       width: 200,
       headerCellName: 'Close',
       getContent: function(row) {
         return row.get('close').toFixed(2);
       }
     });
-    return [dateColumn, openColumn, highColumn, lowColumn, closeColumn];
+    return Ember.A([dateColumn, openColumn, highColumn, lowColumn, closeColumn]);
   }),
 
-  _tableContent: computed(function() {
+  content: computed(function() {
     var content = Ember.A([]);
     var date;
     for (var i = 0; i < 5000; i++) {
@@ -69,31 +75,43 @@ export default Ember.Controller.extend({
     return content;
   }),
 
-  sortedContent: computed.sort('_tableContent', 'sortProperties'),
-
-  tableContent: computed('sortedContent.[]', 'isSortReversed', function() {
-    var content = this.get('sortedContent');
+  sortedColumn: computed('_sort', 'tableColumns.@each.id', function() { 
+    let sort    = this.get('_sort');
+    let columns = this.get('tableColumns');
     
-    if (this.get('isSortReversed')) {
-      return Ember.A(content.toArray().reverse());
+    return columns.findBy('id', sort);
+  }),
+
+  sortProperties: computed('sortedColumn', function() { 
+    let column = this.get('sortedColumn');
+
+    if (column) {
+      return column.get('sortProperties');
     }
 
-    return content;
+    return [];
+  }),
+
+  sorted: computed.sort('content', 'sortProperties'),
+
+  tableContent: computed('sorted.[]', '_desc', function() {
+    let sorted = this.get('sorted');
+    let desc   = this.get('_desc');
+
+    if (isEqual(desc, false)) {
+      return sorted.toArray().reverse();
+    }
+
+    return sorted;
   }),
 
 
   actions: {
-    sort(sortProperties) {
-      let current = this.get('sortProperties');
+    sort(column, desc) {
+      let id = column.get('id');
 
-      if (isEqual(current.toString(), sortProperties.toString())) {
-        let toggle = !this.get('isSortReversed');
-        this.set('isSortReversed', toggle);
-      } else {
-        this.setProperties({
-          sortProperties: sortProperties,
-          isSortReversed: false
-        });
+      if (id) {
+        this.transitionToRoute({ queryParams: { _sort: id, _desc: desc }});
       }
     }
   }

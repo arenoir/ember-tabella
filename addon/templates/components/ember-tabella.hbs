@@ -5,7 +5,7 @@
       height=headerHeight 
       width=headerRowWith
       scrollLeft=scrollLeft 
-      sortProperties=sortProperties
+      sortedColumn=sortedColumn
       isSortReversed=isSortReversed
       on-sort=(action "onSort")
     }}
@@ -13,7 +13,7 @@
 {{/if}}
 
 {{ember-tabella/body 
-  rows=content 
+  content=content 
   columns=_columns 
   height=bodyHeight 
   width=rowWidth 
@@ -21,4 +21,6 @@
   rowHeight=rowHeight
   scrollLeft=scrollLeft
   scrollTop=scrollTop
-  scroll-change=(action "scrollChange")}}
+  scroll-change=(action "scrollChange")
+  column-clicked=(action "columnClicked")
+}}

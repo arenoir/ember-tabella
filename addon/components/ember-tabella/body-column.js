@@ -11,15 +11,23 @@ export default Component.extend(columnStyle, {
   attributeBindings: 'style',
   scrollLeft: 0,
   scrollTop: 0,
+  model: null,
 
-  content: computed('row', 'column', function() {
-    let row    = this.get('row');
+  content: computed('model', 'column', function() {
+    let model    = this.get('model');
     let column = this.get('column');
     
-    if (!row || !column) {
+    if (!model || !column) {
       return;
     }
     
-    return column.getContent(row);
-  })
+    return column.getContent(model);
+  }),
+
+  click() {
+    let column = this.get('column');
+    let model  = this.get('model');
+
+    this.sendAction('column-clicked', column, model);
+  }
 });

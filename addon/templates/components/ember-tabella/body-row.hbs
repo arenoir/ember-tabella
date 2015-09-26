@@ -2,7 +2,8 @@
   {{component column.templateName 
     column=column 
     index=index
-    row=row 
-    scrollLeft=scrollLeft 
+    model=model
+    scrollLeft=scrollLeft
+    column-clicked=(action "columnClicked")
   }}
 {{/each}}

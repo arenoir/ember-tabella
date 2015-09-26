@@ -17,7 +17,7 @@ function calculateWidth(columns) {
 
 export default Component.extend({
   layout: layout,
-  classNames: ['ember-table'],
+  classNames: ['ember-tabella'],
   numFixedColumns: 0,
   height: 400,
   width: 500,
@@ -27,7 +27,7 @@ export default Component.extend({
   resolvedContent: [],
   attributeBindings: ['style'],
   columns: null,
-  sortProperties: [],
+  sortedColumn: null,
   isSortReversed: false,
   scrollLeft: 0,
   scrollTop: 0,
@@ -125,7 +125,11 @@ export default Component.extend({
 
   actions: {
 
-    scrollChange: function(left, top) {
+    columnClicked(column, model) {
+      this.sendAction('column-clicked', column, model);
+    },
+
+    scrollChange(left, top) {
       this.setProperties({
         scrollTop: top,
         scrollLeft: left
@@ -137,8 +141,8 @@ export default Component.extend({
       }
     },
 
-    onSort(sortProperties) {
-      this.sendAction('on-sort', sortProperties);
+    onSort(column, desc) {
+      this.sendAction('on-sort', column, desc);
     }
   }
 });

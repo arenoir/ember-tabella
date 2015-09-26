@@ -5,6 +5,12 @@ const {Component} = Ember;
 
 export default Component.extend({
   layout: layout,
-  row: null,
-  classNames: 'ember-tabella__body-row'
+  model: null,
+  classNames: 'ember-tabella__body-row',
+
+  actions: {
+    columnClicked(column, model) {
+      this.sendAction('column-clicked', column, model);
+    }
+  }
 });

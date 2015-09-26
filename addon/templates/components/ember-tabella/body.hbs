@@ -1,5 +1,5 @@
 {{#ember-collection 
-  items=rows 
+  items=content 
   cell-layout=(fixed-grid-layout width rowHeight) 
   estimated-height=height
   estimated-width=width
@@ -10,10 +10,11 @@
   as |item index|}}
 
   {{ember-tabella/body-row 
-    row=item 
+    model=item 
     index=index 
     columns=columns 
     scrollLeft=scrollLeft 
     offsetLeft=fixedColumnsWidth
+    column-clicked=(action "columnClicked")
   }}
 {{/ember-collection}}

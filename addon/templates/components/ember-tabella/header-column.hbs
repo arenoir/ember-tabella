@@ -1,5 +1,9 @@
 <div class="ember-tabella__header-column__title" {{action "sort"}}>
   {{column.headerCellName}}
+
+  {{#if isSortable}}
+    {{ember-tabella/header-sort-indicator sort=sortDirection}}
+  {{/if}}
 </div>
 
 {{#if column.isResizable}}
