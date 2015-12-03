@@ -24,13 +24,13 @@ export default Component.extend({
   headerHeight: 50,
   rowHeight: 30,
   hasHeader: true,
-  resolvedContent: [],
   attributeBindings: ['style'],
   columns: null,
   sortedColumn: null,
   isSortReversed: false,
   scrollLeft: 0,
   scrollTop: 0,
+  content: [],
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -51,20 +51,6 @@ export default Component.extend({
     }
 
     return new A(columns);
-  }),
-
-
-  _contentChanged: observer('content', function() {
-    var _this  = this;
-    var content = this.get('content');
-
-    if (content && typeof(content.then) === 'function') {
-      content.then(function(_content) {
-        _this.set('resolvedContent', _content);
-      });
-    } else {
-      this.set('resolvedContent', content);
-    }
   }),
 
 
