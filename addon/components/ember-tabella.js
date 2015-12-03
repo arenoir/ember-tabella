@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/ember-tabella';
 
-const {A, Component, computed, observer, isEmpty} = Ember;
+const {A, Component, computed, isEmpty} = Ember;
 const {htmlSafe} = Ember.String;
 
 function calculateWidth(columns) {
