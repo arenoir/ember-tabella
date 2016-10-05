@@ -38,13 +38,13 @@ export default Component.extend({
   },
 
   markFixedColumns() {
-    let columns = this.get('fixedColumns');
+    const columns = this.get('fixedColumns');
     
     columns.setEach('isFixed', true);
   },
 
   _columns: computed('columns.[]', function() {
-    let columns = this.get('columns');
+    const columns = this.get('columns');
 
     if (isEmpty(columns)) {
       return [];
@@ -55,7 +55,7 @@ export default Component.extend({
 
 
   style: computed('height', function() {
-    let height = this.get('height');
+    const height = this.get('height');
 
     return htmlSafe(`height:${height}px;`);
   }),
@@ -75,7 +75,7 @@ export default Component.extend({
 
   
   rowWidth: computed('columns.@each.width', function() {
-    let columns = this.get('columns');
+    const columns = this.get('columns');
 
     return calculateWidth(columns);
   }),

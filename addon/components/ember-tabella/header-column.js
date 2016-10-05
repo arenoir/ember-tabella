@@ -30,8 +30,8 @@ export default Component.extend(columnStyle, {
   _isSortReversed: computed.and('isSortReversed', 'isSorted'),
   
   isSorted: computed('sortedColumn', 'column', function() {
-    let scolumn = this.get('sortedColumn');
-    let column  = this.get('column');
+    const scolumn = this.get('sortedColumn');
+    const column  = this.get('column');
     
     return isEqual(scolumn, column);
   }),
@@ -47,7 +47,7 @@ export default Component.extend(columnStyle, {
   }),
 
   sortedClassName: computed('sortDirection', function() {
-    let direction = this.get('sortDirection');
+    const direction = this.get('sortDirection');
 
     if (!direction) {
       return;
@@ -58,8 +58,8 @@ export default Component.extend(columnStyle, {
 
   actions: {
     resize(offsetX) {
-      let width  = this.get('width');
-      let nWidth = width + (offsetX || 0);
+      const width  = this.get('width');
+      const nWidth = width + (offsetX || 0);
 
       this.set('width', nWidth);
     },
@@ -69,10 +69,10 @@ export default Component.extend(columnStyle, {
         return;
       }
 
-      let column = this.get('column');
-      let desc   = !this.get('isSortReversed');
+      const column = this.get('column');
+      const asc    = this.get('isSortReversed');
 
-      this.sendAction('on-sort', column, desc);
+      this.sendAction('on-sort', column, !asc);
     }
   }
 });

@@ -11,7 +11,7 @@ export default Component.extend({
   classNameBindings: ['sortClass'],
 
   sortClass: computed('sort', function() {
-    let sort = this.get('sort');
+    const sort = this.get('sort');
 
     if (sort) {
       return `ember-tabella__header-sort-indicator--${sort}`;
@@ -19,7 +19,7 @@ export default Component.extend({
   }),
 
   content: computed('sort', function() {
-    let sort = this.get('sort');
+    const sort = this.get('sort');
     
     switch(sort) {
       case 'desc':

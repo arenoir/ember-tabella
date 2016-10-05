@@ -10,8 +10,7 @@ export default Component.extend({
   attributeBindings: ['style'],
 
   style: computed('height', function() {
-    //let width = this.get('width');
-    let height = this.get('height');
+    const height = this.get('height');
 
     return htmlSafe(`height:${height}px;`);
   }),

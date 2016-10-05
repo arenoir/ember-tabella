@@ -17,8 +17,8 @@ export default Component.extend({
   isSortReversed: false,
   
   style: computed('width', 'height', function() {
-    let width = this.get('width');
-    let height = this.get('height');
+    const width = this.get('width');
+    const height = this.get('height');
 
     return htmlSafe(`width:${width}px;height:${height}px;`);
   }),

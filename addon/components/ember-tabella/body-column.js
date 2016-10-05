@@ -14,8 +14,8 @@ export default Component.extend(columnStyle, {
   model: null,
 
   content: computed('model', 'column', function() {
-    let model    = this.get('model');
-    let column = this.get('column');
+    const model = this.get('model');
+    const column = this.get('column');
     
     if (!model || !column) {
       return;
@@ -25,8 +25,8 @@ export default Component.extend(columnStyle, {
   }),
 
   click() {
-    let column = this.get('column');
-    let model  = this.get('model');
+    const column = this.get('column');
+    const model = this.get('model');
 
     this.sendAction('column-clicked', column, model);
   }
