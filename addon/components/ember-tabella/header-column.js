@@ -21,8 +21,8 @@ export default Component.extend(columnStyle, {
   
   column: null,
   width: computed.alias('column.width'),
-  minWidth: computed.readOnly('column.minWidth'),
-  maxWidth: computed.readOnly('column.maxWidth'),
+  defaultMinWidth: 50,
+  minWidth: computed.or('column.minWidth', 'defaultMinWidth'),
   isResizable: computed.readOnly('column.isResizable'),
   sortedColumn: null,
   isSortable: computed.notEmpty('column.sortProperties'),
@@ -58,8 +58,14 @@ export default Component.extend(columnStyle, {
 
   actions: {
     resize(offsetX) {
+      const mWidth = this.get('minWidth');
       const width  = this.get('width');
-      const nWidth = width + (offsetX || 0);
+      
+      let nWidth = width + (offsetX || 0);
+
+      if (nWidth <= mWidth) {
+        nWidth = mWidth;
+      }
 
       this.set('width', nWidth);
     },
