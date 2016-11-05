@@ -1,40 +1,89 @@
 # Ember-tabella
 
-Table component for ember build using ember-collection. 
+Table component for ember built using ember-collection. 
 
 [![Build Status](https://travis-ci.org/arenoir/ember-tabella.svg?branch=master)](https://travis-ci.org/arenoir/ember-tabella) [![Code Climate](https://codeclimate.com/github/arenoir/ember-tabella/badges/gpa.svg)](https://codeclimate.com/github/arenoir/ember-tabella)
-
-This addon is a work in progress. It has an api based on ember table without the two way data bindings.
-
-## Dependencies
-
-* ember >= 1.13
-* [ember-collection](https://github.com/emberjs/ember-collection)
-
-
 
 ## Demo
 
 [arenoir.github.io/ember-tabella](http://arenoir.github.io/ember-tabella/)
 
+## Features
+
+- Incremental rendering via [ember-collection](https://github.com/emberjs/ember-collection)
+- Custom teplates per cell
+- Resizable columns
+- Scroll Tracking
+
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+`ember install ember-tabella`
 
-## Running
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+## Usage
 
-## Running Tests
 
-* `ember test`
-* `ember test --server`
+### ember-tabella
 
-## Building
+```      
+{{ember-tabella
+  columns=columns 
+  content=data
+  numFixedColumns="2" 
+  sortedColumn=sortedColumn 
+  isSortReversed=_desc
+  scrollLeft=scrollLeft
+  scrollTop=scrollTop
+  on-sort=(action "sort")
+  column-clicked=(action "columnClicked")
+}}
+```
 
-* `ember build`
+#### columns
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+  A array of objects extending from `ember-tabella/models/columns.js`
+
+*Default:* `[]`
+
+#### content
+
+  A array of objects extending from Ember Object. Usually an ember-data model.
+
+*Default:* `[]`
+
+#### numFixedColumns
+
+  The number of columns from the left that should remain fixed.
+
+*Default:* `null`
+
+#### sortedColumn
+
+  The column id that should be shown as sorted. 
+
+*Note:* Only used to show content is sorted.
+*Default:* `null`
+
+#### isSortReversed
+  
+  Is the content ordered in descending order.
+
+*Default:* `null`
+
+#### scollLeft
+
+  The scollLeft postion of the table body.
+
+*Default:* `0`
+
+#### scollTop
+
+  The scollTop postion of the table.
+
+*Default:* `0`
+
+
+## Dependencies
+
+* ember >= 2.4
+* [ember-collection](https://github.com/emberjs/ember-collection)

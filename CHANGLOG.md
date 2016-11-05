@@ -1,5 +1,8 @@
 # ember-tabella changelog
 
+### 0.0.3 (2016-11-04)
+update dependencies, update readme update wip status.
+add min width to columns. 
 
 ### 0.0.2 (2015-09-25)
 change 'column.row' to 'column.model'.

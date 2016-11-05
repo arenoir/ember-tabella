@@ -1,12 +1,18 @@
-// import { moduleForModel, test } from 'ember-qunit';
+import { module, test } from 'ember-qunit';
+import ColumnDefinition from 'ember-tabella/models/column';
 
-// moduleForModel('column', 'Unit | Model | column', {
-//   // Specify the other units that are required for this test.
-//   needs: []
-// });
 
-// test('it exists', function(assert) {
-//   var model = this.subject();
-//   // var store = this.store();
-//   assert.ok(!!model);
-// });
+module('Unit | Model | column style');
+
+test('it exists', function(assert) {
+  let model = ColumnDefinition.create({
+    id: 'date',
+    width: 150,
+    textAlign: 'text-align-left',
+    headerCellName: 'Date',
+    sortProperties:['date', 'high:desc'],
+    contentPath: 'date'
+  });
+
+  assert.ok(!!model);
+});

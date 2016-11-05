@@ -5,6 +5,22 @@ module.exports = {
       dependencies: { }
     },
     {
+      name: 'ember-2.4-LTS',
+      bower: {
+        dependencies: {
+          'ember': 'lts-2-4'
+        }
+      }
+    }, 
+    {
+      name: 'ember-2.8-LTS',
+      bower: {
+        dependencies: {
+          'ember': 'lts-2-8'
+        }
+      }
+    },
+    {
       name: 'ember-release',
       dependencies: {
         'ember': 'components/ember#release'
