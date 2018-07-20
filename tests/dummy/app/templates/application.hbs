@@ -1,4 +1,13 @@
 <div class="col-md-10 col-md-offset-2">
+  <style>
+    .ember-tabella__header-resize-handle {
+      border-left: 3px dotted #ccc;
+      background: #fff;
+    }
+    .ember-tabella__header {
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
   <h1>Ember Tabella <small>Simple</small></h1>
 
   <div class="row">
@@ -14,17 +23,20 @@
           hasFooter=false
           sortedColumn=sortedColumn
           isSortReversed=_desc
-          on-sort=(action "sort")
+          onColumnSort=(action "sort")
         }}
       </div>
     </div>
 
     <div class="col-md-12 bumper-30">
       <h3>Template</h3>
+      {{code-snippet name="snippets/table-basic.hbs"}}
+
     </div>
 
     <div class="col-md-12 bumper-30">
       <h3>Controller</h3>
+      {{code-snippet name="controllers/application.js"}}
     </div>
   </div>
 </div>

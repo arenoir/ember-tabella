@@ -1,3 +1,4 @@
+// BEGIN-SNIPPET simple-controller
 import { sort } from '@ember/object/computed';
 import { A } from '@ember/array';
 import Controller from '@ember/controller';
@@ -12,57 +13,56 @@ export default Controller.extend({
   _desc: false,
 
   tableColumns: computed(function() {
-    return A([
-      ColumnDefinition.create({
-        id: 'date',
-        width: 150,
-        textAlign: 'text-align-left',
-        headerCellName: 'Date',
-        sortProperties:['date', 'high:desc'],
-        getContent: function(row) {
-          return row.get('date').toDateString();
-        }
-      }),
-      ColumnDefinition.create({
-        id: 'open',
-        width: 75,
-        headerCellName: 'Open',
-        isResizable: true,
-        getContent: function(row) {
-          return row.get('open').toFixed(2);
-        }
-      }),
-      ColumnDefinition.create({
-        id: 'high',
-        width: 200,
-        headerCellName: 'High',
-        sortProperties:['high'],
-        getContent: function(row) {
-          return row.get('high').toFixed(2);
-        }
-      }),
-      ColumnDefinition.create({
-        id: 'low',
-        width: 200,
-        headerCellName: 'Low',
-        getContent: function(row) {
-          return row.get('low').toFixed(2);
-        }
-      }),
-      ColumnDefinition.create({
-        id: 'close',
-        width: 200,
-        headerCellName: 'Close',
-        getContent: function(row) {
-          return row.get('close').toFixed(2);
-        }
-      })
-    ]);
+    var dateColumn = ColumnDefinition.create({
+      id: 'date',
+      width: 150,
+      textAlign: 'text-align-left',
+      headerCellName: 'Date',
+      sortProperties:['date', 'high:desc'],
+      getContent: function(row) {
+        return row.get('date').toDateString();
+      }
+    });
+    var openColumn = ColumnDefinition.create({
+      id: 'open',
+      width: 75,
+      headerCellName: 'Open',
+      isResizable: true,
+      getContent: function(row) {
+        return row.get('open').toFixed(2);
+      }
+    });
+    var highColumn = ColumnDefinition.create({
+      id: 'high',
+      width: 200,
+      headerCellName: 'High',
+      sortProperties:['high'],
+      getContent: function(row) {
+        return row.get('high').toFixed(2);
+      }
+    });
+    var lowColumn = ColumnDefinition.create({
+      id: 'low',
+      width: 200,
+      headerCellName: 'Low',
+      getContent: function(row) {
+        return row.get('low').toFixed(2);
+      }
+    });
+    var closeColumn = ColumnDefinition.create({
+      id: 'close',
+      width: 200,
+      headerCellName: 'Close',
+      getContent: function(row) {
+        return row.get('close').toFixed(2);
+      }
+    });
+    return A([dateColumn, openColumn, highColumn, lowColumn, closeColumn]);
   }),
 
   content: computed(function() {
-    const content = A([]);
-    let date;
+    var content = A([]);
+    var date;
     for (var i = 0; i < 5000; i++) {
       date = randomDate(new Date(2000, 1, 5), new Date());
       content.push(EmberObject.create({

@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import { htmlSafe } from '@ember/string';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../../templates/components/ember-tabella/body';
-
-const {Component, computed} = Ember;
-const {htmlSafe} = Ember.String;
 
 export default Component.extend({
   layout: layout,
@@ -15,13 +14,12 @@ export default Component.extend({
     return htmlSafe(`height:${height}px;`);
   }),
 
-  actions: {
-    columnClicked(column, model) {
-      this.sendAction('column-clicked', column, model);
-    },
+  onCellClick() {},
+  onScroll() {},
 
+  actions: {
     scrollChange(left, top) {
-      this.sendAction('scroll-change', left, top);
+      this.get('onScroll')(left, top);
     }
   }
 });

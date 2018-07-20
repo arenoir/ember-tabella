@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   attributeBindings: ['draggable'],
   classNames: ['ember-tabella__header-resize-handle'],
   _left: 0,
   draggable: true,
+
+  onResize() {},
 
   mouseDown: function(event) {
     this.startMouseCapture();
@@ -29,7 +31,7 @@ export default Ember.Component.extend({
   resize: function(event) {
     //this._offsetLeft = this.element.offsetLeft;
     this._offsetLeft = this.$().offset().left;
-    
+
     var offset = event.pageX - this._offsetLeft;
 
     if (this._offset === offset) {
@@ -38,7 +40,7 @@ export default Ember.Component.extend({
 
     this._offset = offset;
 
-    this.sendAction('onResize', offset);
+    this.get('onResize')(offset);
   }
 
 });

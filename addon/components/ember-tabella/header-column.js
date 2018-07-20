@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { alias, or, readOnly, notEmpty, and } from '@ember/object/computed';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isEqual } from '@ember/utils';
 import layout from '../../templates/components/ember-tabella/header-column';
 import columnStyle from '../../mixins/column-style';
-
-const {Component, computed, isEqual} = Ember;
 
 export default Component.extend(columnStyle, {
   layout: layout,
@@ -18,21 +19,23 @@ export default Component.extend(columnStyle, {
     'column.isFixed:ember-tabella__header-column--fixed'
   ],
   attributeBindings: ['style'],
-  
+
   column: null,
-  width: computed.alias('column.width'),
+  width: alias('column.width'),
   defaultMinWidth: 50,
-  minWidth: computed.or('column.minWidth', 'defaultMinWidth'),
-  isResizable: computed.readOnly('column.isResizable'),
+  minWidth: or('column.minWidth', 'defaultMinWidth'),
+  isResizable: readOnly('column.isResizable'),
   sortedColumn: null,
-  isSortable: computed.notEmpty('column.sortProperties'),
+  isSortable: notEmpty('column.sortProperties'),
   isSortReversed: false,
-  _isSortReversed: computed.and('isSortReversed', 'isSorted'),
-  
+  _isSortReversed: and('isSortReversed', 'isSorted'),
+
+  onColumnSort() {},
+
   isSorted: computed('sortedColumn', 'column', function() {
     const scolumn = this.get('sortedColumn');
     const column  = this.get('column');
-    
+
     return isEqual(scolumn, column);
   }),
 
@@ -60,7 +63,7 @@ export default Component.extend(columnStyle, {
     resize(offsetX) {
       const mWidth = this.get('minWidth');
       const width  = this.get('width');
-      
+
       let nWidth = width + (offsetX || 0);
 
       if (nWidth <= mWidth) {
@@ -78,7 +81,7 @@ export default Component.extend(columnStyle, {
       const column = this.get('column');
       const asc    = this.get('isSortReversed');
 
-      this.sendAction('on-sort', column, !asc);
+      this.get('onColumnSort')(column, !asc);
     }
   }
 });

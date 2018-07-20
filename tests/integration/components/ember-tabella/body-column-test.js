@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Column from 'ember-tabella/models/column';
@@ -14,7 +14,7 @@ test('it renders', function(assert) {
     contentPath: 'name'
   });
 
-  let model = Ember.Object.create({
+  let model = EmberObject.create({
     name: 'my name'
   });
   

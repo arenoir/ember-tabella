@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Column from 'ember-tabella/models/column';
@@ -9,7 +9,7 @@ moduleForComponent('ember-tabella/header-row', 'Integration | Component | ember 
 
 test('it renders', function(assert) {
   assert.expect(1);
-  let columns = Ember.A([
+  let columns = A([
     Column.create({
       width: 100,
       contentPath: 'name'

@@ -1,6 +1,6 @@
 # Ember-tabella
 
-Table component for ember built using ember-collection. 
+Table component for ember built using ember-collection.
 
 [![Build Status](https://travis-ci.org/arenoir/ember-tabella.svg?branch=master)](https://travis-ci.org/arenoir/ember-tabella) [![Code Climate](https://codeclimate.com/github/arenoir/ember-tabella/badges/gpa.svg)](https://codeclimate.com/github/arenoir/ember-tabella)
 
@@ -28,15 +28,15 @@ Table component for ember built using ember-collection.
 
 ```      
 {{ember-tabella
-  columns=columns 
+  columns=columns
   content=data
-  numFixedColumns="2" 
-  sortedColumn=sortedColumn 
+  numFixedColumns="2"
+  sortedColumn=sortedColumn
   isSortReversed=_desc
   scrollLeft=scrollLeft
   scrollTop=scrollTop
-  on-sort=(action "sort")
-  column-clicked=(action "columnClicked")
+  onColumnSort=(action "sort")
+  onCellClick=(action "columnClicked")
 }}
 ```
 
@@ -60,13 +60,13 @@ Table component for ember built using ember-collection.
 
 #### sortedColumn
 
-  The column id that should be shown as sorted. 
+  The column id that should be shown as sorted.
 
 *Note:* Only used to show content is sorted.
 *Default:* `null`
 
 #### isSortReversed
-  
+
   Is the content ordered in descending order.
 
 *Default:* `null`

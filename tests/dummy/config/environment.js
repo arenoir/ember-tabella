@@ -22,10 +22,10 @@ module.exports = function(environment) {
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
     'script-src': "'self'",
-    'font-src': "'self'", 
-    'connect-src': "'self'", 
+    'font-src': "'self'",
+    'connect-src': "'self'",
     'img-src': "'self'",
-    'style-src': "'self' 'unsafe-inline'", 
+    'style-src': "'self' 'unsafe-inline'",
     'media-src': "'self'"
   }
   if (environment === 'development') {
@@ -39,7 +39,7 @@ module.exports = function(environment) {
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
-
+    ENV.APP.autoboot = false;
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
@@ -48,6 +48,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.locationType = 'hash';
+    ENV.rootURL = '/ember-tabella/';
     ENV.rootURL = '/ember-tabella'
   }
 

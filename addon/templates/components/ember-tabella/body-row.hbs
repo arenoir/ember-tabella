@@ -1,9 +1,9 @@
 {{#each columns as |column index|}}
-  {{component column.templateName 
-    column=column 
+  {{component column.templateName
+    column=column
     index=index
     model=model
     scrollLeft=scrollLeft
-    column-clicked=(action "columnClicked")
+    onCellClick=onCellClick
   }}
 {{/each}}

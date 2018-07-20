@@ -1,14 +1,15 @@
-import Ember from 'ember';
+import { htmlSafe } from '@ember/string';
+import { A } from '@ember/array';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 import layout from '../templates/components/ember-tabella';
-
-const {A, Component, computed, isEmpty} = Ember;
-const {htmlSafe} = Ember.String;
 
 function calculateWidth(columns) {
   if (isEmpty(columns)) {
     return 0;
   }
-  
+
   return columns.reduce((function(total, column) {
     return total + column.get('width') || 0;
   }), 0);
@@ -30,7 +31,11 @@ export default Component.extend({
   isSortReversed: false,
   scrollLeft: 0,
   scrollTop: 0,
-  content: [],
+  content: null,
+
+  onColumnClick() {},
+  onColumnSort() {},
+  onScroll() {},
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -39,7 +44,7 @@ export default Component.extend({
 
   markFixedColumns() {
     const columns = this.get('fixedColumns');
-    
+
     columns.setEach('isFixed', true);
   },
 
@@ -64,7 +69,7 @@ export default Component.extend({
   fixedColumns: computed('columns.[]', 'numFixedColumns', function() {
     let columns = this.get('columns') || [];
     let length = this.get('numFixedColumns') || 0;
-    
+
     return new A(columns.slice(0, length));
   }),
 
@@ -73,7 +78,7 @@ export default Component.extend({
     return calculateWidth(this.get('fixedColumns'));
   }),
 
-  
+
   rowWidth: computed('columns.@each.width', function() {
     const columns = this.get('columns');
 
@@ -111,11 +116,7 @@ export default Component.extend({
 
   actions: {
 
-    columnClicked(column, model) {
-      this.sendAction('column-clicked', column, model);
-    },
-
-    scrollChange(left, top) {
+    updateScrollPosition(left, top) {
       this.setProperties({
         scrollTop: top,
         scrollLeft: left
@@ -125,10 +126,8 @@ export default Component.extend({
         this.$('.ember-tabella__header:first').scrollLeft(left);
         this._left = left;
       }
-    },
 
-    onSort(column, desc) {
-      this.sendAction('on-sort', column, desc);
+      this.get('onScroll')(left, top);
     }
   }
 });

@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../../templates/components/ember-tabella/body-column';
 import columnStyle from '../../mixins/column-style';
-
-const {Component, computed} = Ember;
 
 export default Component.extend(columnStyle, {
   layout: layout,
@@ -13,14 +12,16 @@ export default Component.extend(columnStyle, {
   scrollTop: 0,
   model: null,
 
+  onCellClick() {},
+
   content: computed('model', 'column', function() {
     const model = this.get('model');
     const column = this.get('column');
-    
+
     if (!model || !column) {
       return;
     }
-    
+
     return column.getContent(model);
   }),
 
@@ -28,6 +29,6 @@ export default Component.extend(columnStyle, {
     const column = this.get('column');
     const model = this.get('model');
 
-    this.sendAction('column-clicked', column, model);
+    this.get('onCellClick')(column, model);
   }
 });

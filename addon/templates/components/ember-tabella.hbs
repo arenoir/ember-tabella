@@ -1,26 +1,27 @@
 {{#if hasHeader}}
   <div class="ember-tabella__header">
-    {{ember-tabella/header-row 
-      columns=_columns 
-      height=headerHeight 
+    {{ember-tabella/header-row
+      columns=_columns
+      height=headerHeight
       width=headerRowWith
-      scrollLeft=scrollLeft 
+      scrollLeft=scrollLeft
       sortedColumn=sortedColumn
       isSortReversed=isSortReversed
-      on-sort=(action "onSort")
+      onColumnSort=onColumnSort
     }}
   </div>
 {{/if}}
 
-{{ember-tabella/body 
-  content=content 
-  columns=_columns 
-  height=bodyHeight 
-  width=rowWidth 
+{{ember-tabella/body
+  content=content
+  columns=_columns
+  height=bodyHeight
+  width=rowWidth
   rowWidth=rowWidth
   rowHeight=rowHeight
   scrollLeft=scrollLeft
   scrollTop=scrollTop
-  scroll-change=(action "scrollChange")
-  column-clicked=(action "columnClicked")
+  onScroll=(action "updateScrollPosition")
+  onColumnSort=onColumnSort
+  onCellClick=onCellClick
 }}
