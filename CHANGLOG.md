@@ -1,5 +1,11 @@
 # ember-tabella changelog
 
+### 0.1.0 (2018-07-20)
+breaking-change `on-sort` to `onColumnSort` closure action
+breaking-change `column-clicked` to `onCellClick` closure action
+update ember cli version.
+
+
 ### 0.0.4 (2017-06-08)
 update sass version.
 
