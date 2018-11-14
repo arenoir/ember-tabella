@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { get } from '@ember/object';
 
 export default Component.extend({
   attributeBindings: ['draggable'],
@@ -40,7 +41,7 @@ export default Component.extend({
 
     this._offset = offset;
 
-    this.get('onResize')(offset);
+    get(this, 'onResize')(offset);
   }
 
 });

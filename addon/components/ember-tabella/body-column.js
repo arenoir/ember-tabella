@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { get, computed } from '@ember/object';
 import layout from '../../templates/components/ember-tabella/body-column';
 import columnStyle from '../../mixins/column-style';
 
@@ -15,8 +15,8 @@ export default Component.extend(columnStyle, {
   onCellClick() {},
 
   content: computed('model', 'column', function() {
-    const model = this.get('model');
-    const column = this.get('column');
+    const model = get(this, 'model');
+    const column = get(this, 'column');
 
     if (!model || !column) {
       return;
@@ -26,9 +26,9 @@ export default Component.extend(columnStyle, {
   }),
 
   click() {
-    const column = this.get('column');
-    const model = this.get('model');
+    const column = get(this, 'column');
+    const model = get(this, 'model');
 
-    this.get('onCellClick')(column, model);
+    get(this, 'onCellClick')(column, model);
   }
 });

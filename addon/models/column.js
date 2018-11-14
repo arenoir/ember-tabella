@@ -14,7 +14,7 @@ export default EmberObject.extend({
   _width: 150,
 
   getContent(model) {
-    let path = this.get('contentPath');
+    let path = get(this, 'contentPath');
     
     if (path) {
       return get(model, path);

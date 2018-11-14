@@ -1,7 +1,7 @@
 import { sort } from '@ember/object/computed';
 import { A } from '@ember/array';
 import Controller from '@ember/controller';
-import EmberObject, { computed } from '@ember/object';
+import EmberObject, { get, computed } from '@ember/object';
 import { isEqual } from '@ember/utils';
 import ColumnDefinition from 'ember-tabella/models/column';
 import { randomNumber, randomDate } from '../utils/random';
@@ -78,14 +78,14 @@ export default Controller.extend({
   }),
 
   sortedColumn: computed('_sort', 'tableColumns.@each.id', function() {
-    let sort    = this.get('_sort');
-    let columns = this.get('tableColumns');
+    let sort    = get(this, '_sort');
+    let columns = get(this, 'tableColumns');
 
     return columns.findBy('id', sort);
   }),
 
   sortProperties: computed('sortedColumn', function() {
-    let column = this.get('sortedColumn');
+    let column = get(this, 'sortedColumn');
 
     if (column) {
       return column.get('sortProperties');
@@ -97,8 +97,8 @@ export default Controller.extend({
   sorted: sort('content', 'sortProperties'),
 
   tableContent: computed('sorted.[]', '_desc', function() {
-    let sorted = this.get('sorted');
-    let desc   = this.get('_desc');
+    let sorted = get(this, 'sorted');
+    let desc   = get(this, '_desc');
 
     if (isEqual(desc, false)) {
       return sorted.toArray().reverse();

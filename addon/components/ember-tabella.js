@@ -1,7 +1,7 @@
 import { htmlSafe } from '@ember/string';
 import { A } from '@ember/array';
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { get, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import layout from '../templates/components/ember-tabella';
 
@@ -43,13 +43,13 @@ export default Component.extend({
   },
 
   markFixedColumns() {
-    const columns = this.get('fixedColumns');
+    const columns = get(this, 'fixedColumns');
 
     columns.setEach('isFixed', true);
   },
 
   _columns: computed('columns.[]', function() {
-    const columns = this.get('columns');
+    const columns = get(this, 'columns');
 
     if (isEmpty(columns)) {
       return [];
@@ -60,45 +60,45 @@ export default Component.extend({
 
 
   style: computed('height', function() {
-    const height = this.get('height');
+    const height = get(this, 'height');
 
     return htmlSafe(`height:${height}px;`);
   }),
 
 
   fixedColumns: computed('columns.[]', 'numFixedColumns', function() {
-    let columns = this.get('columns') || [];
-    let length = this.get('numFixedColumns') || 0;
+    let columns = get(this, 'columns') || [];
+    let length = get(this, 'numFixedColumns') || 0;
 
     return new A(columns.slice(0, length));
   }),
 
 
   _fixedColumnsWidth: computed('fixedColumns.@each.width', function() {
-    return calculateWidth(this.get('fixedColumns'));
+    return calculateWidth(get(this, 'fixedColumns'));
   }),
 
 
   rowWidth: computed('columns.@each.width', function() {
-    const columns = this.get('columns');
+    const columns = get(this, 'columns');
 
     return calculateWidth(columns);
   }),
 
 
   headerRowWith: computed('rowWidth', function() {
-    return this.get('rowWidth') + 15;//to accommodate scrollbar
+    return get(this, 'rowWidth') + 15;//to accommodate scrollbar
   }),
 
 
   bodyHeight: computed('height', '_headerHeight', '_footerHeight', function() {
-    return this.get('height') - (this.get('_headerHeight') + this.get('_footerHeight'));
+    return get(this, 'height') - (get(this, '_headerHeight') + get(this, '_footerHeight'));
   }),
 
 
   _headerHeight: computed('hasHeader', 'headerHeight', function() {
-    if (this.get('hasHeader')) {
-      return this.get('headerHeight');
+    if (get(this, 'hasHeader')) {
+      return get(this, 'headerHeight');
     }
 
     return 0;
@@ -106,8 +106,8 @@ export default Component.extend({
 
 
   _footerHeight: computed('hasFooter', 'footerHeight', function() {
-    if (this.get('hasFooter')) {
-      return this.get('footerHeight');
+    if (get(this, 'hasFooter')) {
+      return get(this, 'footerHeight');
     }
 
     return 0;
@@ -127,7 +127,7 @@ export default Component.extend({
         this._left = left;
       }
 
-      this.get('onScroll')(left, top);
+      get(this, 'onScroll')(left, top);
     }
   }
 });

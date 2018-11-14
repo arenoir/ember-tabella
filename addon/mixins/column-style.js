@@ -1,14 +1,14 @@
 import { htmlSafe } from '@ember/string';
 import Mixin from '@ember/object/mixin';
-import { computed } from '@ember/object';
+import { get, computed } from '@ember/object';
 
 export default Mixin.create({
 
   style: computed('column.{width,isFixed}', 'scrollLeft', function() {
-    let style = `width:${this.get('column.width')}px;`;
+    let style = `width:${get(this, 'column.width')}px;`;
 
-    if (this.get('column.isFixed')) {
-      style += `left:${this.get('scrollLeft')}px;`;
+    if (get(this, 'column.isFixed')) {
+      style += `left:${get(this, 'scrollLeft')}px;`;
     }
 
     return htmlSafe(style);
