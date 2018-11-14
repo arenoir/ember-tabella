@@ -1,6 +1,6 @@
 import { alias, or, readOnly, notEmpty, and } from '@ember/object/computed';
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { get, computed } from '@ember/object';
 import { isEqual } from '@ember/utils';
 import layout from '../../templates/components/ember-tabella/header-column';
 import columnStyle from '../../mixins/column-style';
@@ -33,24 +33,24 @@ export default Component.extend(columnStyle, {
   onColumnSort() {},
 
   isSorted: computed('sortedColumn', 'column', function() {
-    const scolumn = this.get('sortedColumn');
-    const column  = this.get('column');
+    const scolumn = get(this, 'sortedColumn');
+    const column  = get(this, 'column');
 
     return isEqual(scolumn, column);
   }),
 
   sortDirection: computed('isSorted', '_isSortReversed', function() {
-    if (!this.get('isSorted')) {
+    if (!get(this, 'isSorted')) {
       return null;
     }
-    if (this.get('_isSortReversed')) {
+    if (get(this, '_isSortReversed')) {
       return 'desc';
     }
     return 'asc';
   }),
 
   sortedClassName: computed('sortDirection', function() {
-    const direction = this.get('sortDirection');
+    const direction = get(this, 'sortDirection');
 
     if (!direction) {
       return;
@@ -61,8 +61,8 @@ export default Component.extend(columnStyle, {
 
   actions: {
     resize(offsetX) {
-      const mWidth = this.get('minWidth');
-      const width  = this.get('width');
+      const mWidth = get(this, 'minWidth');
+      const width  = get(this, 'width');
 
       let nWidth = width + (offsetX || 0);
 
@@ -74,14 +74,14 @@ export default Component.extend(columnStyle, {
     },
 
     sort() {
-      if (!this.get('isSortable')) {
+      if (!get(this, 'isSortable')) {
         return;
       }
 
-      const column = this.get('column');
-      const asc    = this.get('isSortReversed');
+      const column = get(this, 'column');
+      const asc    = get(this, 'isSortReversed');
 
-      this.get('onColumnSort')(column, !asc);
+      get(this, 'onColumnSort')(column, !asc);
     }
   }
 });
