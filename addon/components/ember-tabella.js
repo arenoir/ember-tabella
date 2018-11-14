@@ -33,7 +33,7 @@ export default Component.extend({
   scrollTop: 0,
   content: null,
 
-  onColumnClick() {},
+  onCellClick() {},
   onColumnSort() {},
   onScroll() {},
 

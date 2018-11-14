@@ -12,7 +12,7 @@ export default Component.extend(columnStyle, {
   scrollTop: 0,
   model: null,
 
-  onCellClick() {},
+  onCellClick2() {},
 
   content: computed('model', 'column', function() {
     const model = get(this, 'model');
@@ -28,7 +28,7 @@ export default Component.extend(columnStyle, {
   click() {
     const column = get(this, 'column');
     const model = get(this, 'model');
-
-    get(this, 'onCellClick')(column, model);
+    console.log(get(this, 'model'));
+    get(this, 'onCellClick2')(column, model);
   }
 });
