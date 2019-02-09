@@ -1,10 +1,6 @@
 The MIT License (MIT)
 
-<<<<<<< HEAD
 Copyright (c) 2019 Aaron Renoir
-=======
-Copyright (c) 2019
->>>>>>> f520b99... message
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
