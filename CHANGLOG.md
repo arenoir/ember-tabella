@@ -1,6 +1,6 @@
 # ember-tabella changelog
 
-### 0.1.1 (2018-11-14)
+### 0.1.2 (2018-11-14)
 fixed incorrect named onColumnClick function.
 
 ### 0.1.0 (2018-07-20)
