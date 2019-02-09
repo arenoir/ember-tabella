@@ -2,7 +2,20 @@
 
 Table component for ember built using ember-collection.
 
+<<<<<<< HEAD
 [![Build Status](https://travis-ci.org/arenoir/ember-tabella.svg?branch=master)](https://travis-ci.org/arenoir/ember-tabella) [![Code Climate](https://codeclimate.com/github/arenoir/ember-tabella/badges/gpa.svg)](https://codeclimate.com/github/arenoir/ember-tabella)
+=======
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
+
+Installation
+------------------------------------------------------------------------------
+>>>>>>> f520b99... message
 
 ## Demo
 
@@ -65,6 +78,7 @@ Table component for ember built using ember-collection.
 *Note:* Only used to show content is sorted.
 *Default:* `null`
 
+<<<<<<< HEAD
 #### isSortReversed
 
   Is the content ordered in descending order.
@@ -85,6 +99,10 @@ Table component for ember built using ember-collection.
 
 
 ## Dependencies
+=======
+License
+------------------------------------------------------------------------------
+>>>>>>> f520b99... message
 
 * ember >= 2.4
 * [ember-collection](https://github.com/emberjs/ember-collection)
