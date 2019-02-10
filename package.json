@@ -36,7 +36,6 @@
     "ember-cli-uglify": "^2.1.0",
     "ember-cli-update": "^0.29.2",
     "ember-code-snippet": "^2.2.1",
-    "ember-data": "^2.11.0",
     "ember-disable-prototype-extensions": "^1.1.3",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.1.0",
@@ -55,7 +54,7 @@
     "table"
   ],
   "dependencies": {
-    "ember-cli-babel": "^7.1.2",
+    "ember-cli-babel": "^6.8.2",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-sass": "^7.2.0",
     "ember-collection": "^1.0.0-alpha.9"
