@@ -86,5 +86,5 @@ Table component for ember built using ember-collection.
 
 ## Dependencies
 
-* ember >= 2.8
+* ember >= 2.18
 * [ember-collection](https://github.com/emberjs/ember-collection)

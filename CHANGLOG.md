@@ -1,5 +1,8 @@
 # ember-tabella changelog
 
+### 1.0.0 (2019-02-11)
+Remove jquey requirement. Upgrade to ember 3.4.  Drop support for ember < 2.18.
+
 ### 0.1.2 (2018-11-14)
 fixed incorrect named onColumnClick function.
 
