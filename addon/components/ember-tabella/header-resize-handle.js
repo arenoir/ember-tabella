@@ -30,8 +30,7 @@ export default Component.extend({
   },
 
   resize: function(event) {
-    //this._offsetLeft = this.element.offsetLeft;
-    this._offsetLeft = this.$().offset().left;
+    this._offsetLeft = this.element.getBoundingClientRect().left;
 
     var offset = event.pageX - this._offsetLeft;
 

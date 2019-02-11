@@ -123,7 +123,7 @@ export default Component.extend({
       });
 
       if (left !== this._left) {
-        this.$('.ember-tabella__header:first').scrollLeft(left);
+        this.element.querySelector('.ember-tabella__header').scrollLeft = left;
         this._left = left;
       }
 
