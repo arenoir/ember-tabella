@@ -65,7 +65,6 @@ Table component for ember built using ember-collection.
 *Note:* Only used to show content is sorted.
 *Default:* `null`
 
-<<<<<<< HEAD
 #### isSortReversed
 
   Is the content ordered in descending order.
@@ -86,10 +85,6 @@ Table component for ember built using ember-collection.
 
 
 ## Dependencies
-=======
-License
-------------------------------------------------------------------------------
->>>>>>> f520b99... message
 
-* ember >= 2.4
+* ember >= 2.8
 * [ember-collection](https://github.com/emberjs/ember-collection)
