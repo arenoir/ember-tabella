@@ -55,7 +55,7 @@ export default Component.extend({
       return [];
     }
 
-    return new A(columns);
+    return A(columns);
   }),
 
 
@@ -70,7 +70,7 @@ export default Component.extend({
     let columns = get(this, 'columns') || [];
     let length = get(this, 'numFixedColumns') || 0;
 
-    return new A(columns.slice(0, length));
+    return A(columns.slice(0, length));
   }),
 
 
