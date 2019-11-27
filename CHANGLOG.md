@@ -1,7 +1,7 @@
 # ember-tabella changelog
 
 ### 1.1.0 (2019-11-27)
-Migrate style mixins to util functions. Upgrade ember to 3.14. Drop support for ember < 3.8.
+Migrate style mixins to util functions. Upgrade ember to 3.14. Drop support for ember < 3.4
 
 ### 1.0.0 (2019-02-11)
 Remove jquey requirement. Upgrade to ember 3.4.  Drop support for ember < 2.18.
