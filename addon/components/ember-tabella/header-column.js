@@ -3,9 +3,9 @@ import Component from '@ember/component';
 import { get, computed } from '@ember/object';
 import { isEqual } from '@ember/utils';
 import layout from '../../templates/components/ember-tabella/header-column';
-import columnStyle from '../../mixins/column-style';
+import columnStyle from '../../utils/column-style';
 
-export default Component.extend(columnStyle, {
+export default Component.extend({
   layout: layout,
   scrollLeft: 0,
   scrollTop: 0,
@@ -29,6 +29,14 @@ export default Component.extend(columnStyle, {
   isSortable: notEmpty('column.sortProperties'),
   isSortReversed: false,
   _isSortReversed: and('isSortReversed', 'isSorted'),
+
+  style: computed('column.{width,isFixed}', 'scrollLeft', function() {
+    const width = get(this, 'column.width');
+    const isFixed = get(this, 'column.isFixed');
+    const scrollLeft = get(this, 'scrollLeft');
+
+    return columnStyle(width, isFixed, scrollLeft);
+  }),
 
   onColumnSort() {},
 

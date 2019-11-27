@@ -9,7 +9,7 @@ module('Integration | Component | ember tabella/header-row', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    assert.expect(1);
+    assert.expect(2);
     let columns = A([
       Column.create({
         width: 100,
@@ -29,5 +29,7 @@ module('Integration | Component | ember tabella/header-row', function(hooks) {
 
 
     assert.dom('.ember-tabella__header-column').exists({ count: 2 }, 'two header columns');
+    assert.dom('.ember-tabella__header-column').hasStyle({width: "100px"});
+
   });
 });

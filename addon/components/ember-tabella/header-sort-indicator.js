@@ -14,6 +14,8 @@ export default Component.extend({
 
     if (sort) {
       return `ember-tabella__header-sort-indicator--${sort}`;
+    } else {
+      return '';
     }
   }),
 

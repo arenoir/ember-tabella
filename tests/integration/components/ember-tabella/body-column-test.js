@@ -9,7 +9,7 @@ module('Integration | Component | ember tabella/body column', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    assert.expect(1);
+    assert.expect(2);
     let column = Column.create({
       width: 100,
       contentPath: 'name'
@@ -26,5 +26,7 @@ module('Integration | Component | ember tabella/body column', function(hooks) {
 
 
     assert.dom('*').hasText('my name', 'content based on contentPath');
+    assert.dom('.ember-tabella__body-column').hasStyle({width: "100px"});
+
   });
 });
