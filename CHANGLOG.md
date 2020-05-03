@@ -1,5 +1,8 @@
 # ember-tabella changelog
 
+### 1.1.1 (2020-05-03)
+Upgrade ember to 3.16 LTS.
+
 ### 1.1.0 (2019-11-27)
 Migrate style mixins to util functions. Upgrade ember to 3.14. Drop support for ember < 3.4
 
