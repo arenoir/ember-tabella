@@ -15,7 +15,7 @@ export default Component.extend({
   style: computed('column.{width,isFixed}', 'scrollLeft', function() {
     const width = get(this, 'column.width');
     const isFixed = get(this, 'column.isFixed');
-    const scrollLeft = get(this, 'scrollLeft');
+    const scrollLeft = this.scrollLeft;
 
     return columnStyle(width, isFixed, scrollLeft);
   }),
@@ -23,8 +23,8 @@ export default Component.extend({
   onCellClick() {},
 
   content: computed('model', 'column', function() {
-    const model = get(this, 'model');
-    const column = get(this, 'column');
+    const model = this.model;
+    const column = this.column;
 
     if (!model || !column) {
       return;
@@ -34,9 +34,9 @@ export default Component.extend({
   }),
 
   click() {
-    const column = get(this, 'column');
-    const model = get(this, 'model');
+    const column = this.column;
+    const model = this.model;
 
-    get(this, 'onCellClick')(column, model);
+    this.onCellClick(column, model);
   }
 });

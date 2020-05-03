@@ -1,6 +1,6 @@
 import { htmlSafe } from '@ember/string';
 import Component from '@ember/component';
-import { get, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import layout from '../../templates/components/ember-tabella/header-row';
 
 export default Component.extend({
@@ -16,8 +16,8 @@ export default Component.extend({
   isSortReversed: false,
 
   style: computed('width', 'height', function() {
-    const width = get(this, 'width');
-    const height = get(this, 'height');
+    const width = this.width;
+    const height = this.height;
 
     return htmlSafe(`width:${width}px;height:${height}px;`);
   })

@@ -1,7 +1,7 @@
 import { htmlSafe } from '@ember/string';
 import { A } from '@ember/array';
 import Component from '@ember/component';
-import { get, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import layout from '../templates/components/ember-tabella';
 
@@ -43,13 +43,13 @@ export default Component.extend({
   },
 
   markFixedColumns() {
-    const columns = get(this, 'fixedColumns');
+    const columns = this.fixedColumns;
 
     columns.setEach('isFixed', true);
   },
 
   _columns: computed('columns.[]', function() {
-    const columns = get(this, 'columns');
+    const columns = this.columns;
 
     if (isEmpty(columns)) {
       return [];
@@ -60,45 +60,45 @@ export default Component.extend({
 
 
   style: computed('height', function() {
-    const height = get(this, 'height');
+    const height = this.height;
 
     return htmlSafe(`height:${height}px;`);
   }),
 
 
   fixedColumns: computed('columns.[]', 'numFixedColumns', function() {
-    let columns = get(this, 'columns') || [];
-    let length = get(this, 'numFixedColumns') || 0;
+    let columns = this.columns || [];
+    let length = this.numFixedColumns || 0;
 
     return A(columns.slice(0, length));
   }),
 
 
   _fixedColumnsWidth: computed('fixedColumns.@each.width', function() {
-    return calculateWidth(get(this, 'fixedColumns'));
+    return calculateWidth(this.fixedColumns);
   }),
 
 
   rowWidth: computed('columns.@each.width', function() {
-    const columns = get(this, 'columns');
+    const columns = this.columns;
 
     return calculateWidth(columns);
   }),
 
 
   headerRowWith: computed('rowWidth', function() {
-    return get(this, 'rowWidth') + 15;//to accommodate scrollbar
+    return this.rowWidth + 15;//to accommodate scrollbar
   }),
 
 
   bodyHeight: computed('height', '_headerHeight', '_footerHeight', function() {
-    return get(this, 'height') - (get(this, '_headerHeight') + get(this, '_footerHeight'));
+    return this.height - (this._headerHeight + this._footerHeight);
   }),
 
 
   _headerHeight: computed('hasHeader', 'headerHeight', function() {
-    if (get(this, 'hasHeader')) {
-      return get(this, 'headerHeight');
+    if (this.hasHeader) {
+      return this.headerHeight;
     }
 
     return 0;
@@ -106,8 +106,8 @@ export default Component.extend({
 
 
   _footerHeight: computed('hasFooter', 'footerHeight', function() {
-    if (get(this, 'hasFooter')) {
-      return get(this, 'footerHeight');
+    if (this.hasFooter) {
+      return this.footerHeight;
     }
 
     return 0;
@@ -127,7 +127,7 @@ export default Component.extend({
         this._left = left;
       }
 
-      get(this, 'onScroll')(left, top);
+      this.onScroll(left, top);
     }
   }
 });

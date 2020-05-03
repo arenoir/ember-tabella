@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import layout from '../../templates/components/ember-tabella/header-sort-indicator';
 
 export default Component.extend({
@@ -10,7 +10,7 @@ export default Component.extend({
   classNameBindings: ['sortClass'],
 
   sortClass: computed('sort', function() {
-    const sort = get(this, 'sort');
+    const sort = this.sort;
 
     if (sort) {
       return `ember-tabella__header-sort-indicator--${sort}`;
@@ -20,7 +20,7 @@ export default Component.extend({
   }),
 
   content: computed('sort', function() {
-    const sort = get(this, 'sort');
+    const sort = this.sort;
 
     switch(sort) {
       case 'desc':

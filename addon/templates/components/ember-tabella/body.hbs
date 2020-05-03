@@ -1,20 +1,4 @@
-{{#ember-collection
-  items=content
-  cell-layout=(fixed-grid-layout width rowHeight)
-  estimated-height=height
-  estimated-width=width
-  buffer=10
-  scroll-left=scrollLeft
-  scroll-top=scrollTop
-  scroll-change=(action "scrollChange")
-  as |item index|}}
+<EmberCollection @items={{content}} @cell-layout={{fixed-grid-layout width rowHeight}} @estimated-height={{height}} @estimated-width={{width}} @buffer={{10}} @scroll-left={{scrollLeft}} @scroll-top={{scrollTop}} @scroll-change={{action "scrollChange"}} as |item index|>
 
-  {{ember-tabella/body-row
-    model=item
-    index=index
-    columns=columns
-    scrollLeft=scrollLeft
-    offsetLeft=fixedColumnsWidth
-    onCellClick=onCellClick
-  }}
-{{/ember-collection}}
+  <EmberTabella::BodyRow @model={{item}} @index={{index}} @columns={{columns}} @scrollLeft={{scrollLeft}} @offsetLeft={{fixedColumnsWidth}} @onCellClick={{onCellClick}} />
+</EmberCollection>

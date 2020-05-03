@@ -1,6 +1,6 @@
 import { htmlSafe } from '@ember/string';
 import Component from '@ember/component';
-import { get, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import layout from '../../templates/components/ember-tabella/body';
 
 export default Component.extend({
@@ -9,7 +9,7 @@ export default Component.extend({
   attributeBindings: ['style'],
 
   style: computed('height', function() {
-    const height = get(this, 'height');
+    const height = this.height;
 
     return htmlSafe(`height:${height}px;`);
   }),
@@ -19,7 +19,7 @@ export default Component.extend({
 
   actions: {
     scrollChange(left, top) {
-      get(this, 'onScroll')(left, top);
+      this.onScroll(left, top);
     }
   }
 });

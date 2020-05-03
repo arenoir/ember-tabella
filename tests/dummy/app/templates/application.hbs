@@ -16,30 +16,19 @@
   <div class="row">
     <div class="col-md-12">
       <div class="example-container">
-        {{ember-tabella
-          numFixedColumns=2
-          width=500
-          height=500
-          rowHeight=50
-          content=tableContent
-          columns=tableColumns
-          hasFooter=false
-          sortedColumn=sortedColumn
-          isSortReversed=_desc
-          onColumnSort=(action "sort")
-        }}
+        <EmberTabella @numFixedColumns={{2}} @width={{500}} @height={{500}} @rowHeight={{50}} @content={{tableContent}} @columns={{tableColumns}} @hasFooter={{false}} @sortedColumn={{sortedColumn}} @isSortReversed={{_desc}} @onColumnSort={{action "sort"}} />
       </div>
     </div>
 
     <div class="col-md-12 bumper-30">
       <h3>Template</h3>
-      {{code-snippet name="snippets/table-basic.hbs"}}
+      <CodeSnippet @name="snippets/table-basic.hbs" />
 
     </div>
 
     <div class="col-md-12 bumper-30">
       <h3>Controller</h3>
-      {{code-snippet name="controllers/application.js"}}
+      <CodeSnippet @name="controllers/application.js" />
     </div>
   </div>
 </div>

@@ -33,7 +33,7 @@ export default Component.extend({
   style: computed('column.{width,isFixed}', 'scrollLeft', function() {
     const width = get(this, 'column.width');
     const isFixed = get(this, 'column.isFixed');
-    const scrollLeft = get(this, 'scrollLeft');
+    const scrollLeft = this.scrollLeft;
 
     return columnStyle(width, isFixed, scrollLeft);
   }),
@@ -41,24 +41,24 @@ export default Component.extend({
   onColumnSort() {},
 
   isSorted: computed('sortedColumn', 'column', function() {
-    const scolumn = get(this, 'sortedColumn');
-    const column  = get(this, 'column');
+    const scolumn = this.sortedColumn;
+    const column  = this.column;
 
     return isEqual(scolumn, column);
   }),
 
   sortDirection: computed('isSorted', '_isSortReversed', function() {
-    if (!get(this, 'isSorted')) {
+    if (!this.isSorted) {
       return null;
     }
-    if (get(this, '_isSortReversed')) {
+    if (this._isSortReversed) {
       return 'desc';
     }
     return 'asc';
   }),
 
   sortedClassName: computed('sortDirection', function() {
-    const direction = get(this, 'sortDirection');
+    const direction = this.sortDirection;
 
     if (!direction) {
       return;
@@ -69,8 +69,8 @@ export default Component.extend({
 
   actions: {
     resize(offsetX) {
-      const mWidth = get(this, 'minWidth');
-      const width  = get(this, 'width');
+      const mWidth = this.minWidth;
+      const width  = this.width;
 
       let nWidth = width + (offsetX || 0);
 
@@ -82,14 +82,14 @@ export default Component.extend({
     },
 
     sort() {
-      if (!get(this, 'isSortable')) {
+      if (!this.isSortable) {
         return;
       }
 
-      const column = get(this, 'column');
-      const asc    = get(this, 'isSortReversed');
+      const column = this.column;
+      const asc    = this.isSortReversed;
 
-      get(this, 'onColumnSort')(column, !asc);
+      this.onColumnSort(column, !asc);
     }
   }
 });
