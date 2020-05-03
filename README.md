@@ -11,7 +11,7 @@ Table component for ember built using ember-collection.
 ## Features
 
 - Incremental rendering via [ember-collection](https://github.com/emberjs/ember-collection)
-- Custom teplates per cell
+- Custom templates per cell
 - Optional Fixed columns for horizontal scrolling.
 - Resizable columns
 - Scroll Tracking
