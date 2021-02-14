@@ -6,13 +6,7 @@ Table component for ember built using ember-collection.
 
 ## Demo
 
-<<<<<<< HEAD
 [arenoir.github.io/ember-tabella](http://arenoir.github.io/ember-tabella/)
-=======
-* Ember.js v3.16 or above
-* Ember CLI v2.13 or above
-* Node.js v10 or above
->>>>>>> 75faf43... v3.16.1...v3.24.0
 
 ## Features
 

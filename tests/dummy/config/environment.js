@@ -1,12 +1,7 @@
 /* jshint node: true */
 
-<<<<<<< HEAD
-module.exports = function(environment) {
-  var ENV = {
-=======
 module.exports = function (environment) {
   let ENV = {
->>>>>>> 75faf43... v3.16.1...v3.24.0
     modulePrefix: 'dummy',
     environment: environment,
     rootURL: '/',
