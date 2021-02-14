@@ -1,7 +1,12 @@
 /* jshint node: true */
 
+<<<<<<< HEAD
 module.exports = function(environment) {
   var ENV = {
+=======
+module.exports = function (environment) {
+  let ENV = {
+>>>>>>> 75faf43... v3.16.1...v3.24.0
     modulePrefix: 'dummy',
     environment: environment,
     rootURL: '/',
@@ -13,14 +18,14 @@ module.exports = function(environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
   };
 
   ENV.contentSecurityPolicy = {
