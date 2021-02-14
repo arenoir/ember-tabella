@@ -1,9 +1,9 @@
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-addon');
 
-module.exports = function (defaults) {
-  let app = new EmberAddon(defaults, {
-    // Add options here
+module.exports = function(defaults) {
+  var app = new EmberApp(defaults, {
+    snippetPaths: ['tests/dummy/app']
   });
 
   /*
