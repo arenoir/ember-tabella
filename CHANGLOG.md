@@ -1,6 +1,6 @@
 # ember-tabella changelog
 
-### 1.1.2 (2021-02-14)
+### 1.1.3 (2021-02-14)
 Upgrade ember to 3.24 LTS.
 
 ### 1.1.1 (2020-05-03)
