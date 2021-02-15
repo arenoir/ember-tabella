@@ -1,4 +1,0 @@
-<EmberCollection @items={{content}} @cell-layout={{fixed-grid-layout width rowHeight}} @estimated-height={{height}} @estimated-width={{width}} @buffer={{10}} @scroll-left={{scrollLeft}} @scroll-top={{scrollTop}} @scroll-change={{action "scrollChange"}} as |item index|>
-
-  <EmberTabella::BodyRow @model={{item}} @index={{index}} @columns={{columns}} @scrollLeft={{scrollLeft}} @offsetLeft={{fixedColumnsWidth}} @onCellClick={{onCellClick}} />
-</EmberCollection>

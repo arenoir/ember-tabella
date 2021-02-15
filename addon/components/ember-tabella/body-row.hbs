@@ -1,0 +1,12 @@
+<div class='ember-tabella__body-row'...attributes>
+  {{#each @columns as |column index|}}
+    {{component column.templateName
+      column=column
+      width=column.width
+      index=index
+      model=@model
+      scrollLeft=@scrollLeft
+      onCellClick=@onCellClick
+    }}
+  {{/each}}
+</div>

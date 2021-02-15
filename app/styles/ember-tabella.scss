@@ -34,6 +34,9 @@
     &--fixed {
       background-color: #fff;
       z-index: 2;
+      left: 0;
+      position: sticky;
+      position: -webkit-sticky;
     }
 
     &--sortable {
@@ -84,6 +87,8 @@
     &--fixed {
       left: 0;
       z-index: 2;
+      position: sticky;
+      position: -webkit-sticky;
     }
   }
 

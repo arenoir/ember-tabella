@@ -1,0 +1,27 @@
+<div 
+  class="ember-tabella__header-column 
+    {{this.sortedClassName}}
+    {{if this.isSortable "ember-tabella__header-column--sortable"}}
+    {{if this.isSorted "ember-tabella__header-column--sorted"}}
+    {{if this.isResizable "ember-tabella__header-column--resizable"}}
+    {{if @column.isFixed "ember-tabella__header-column--fixed"}}
+  "
+  style={{this.style}}
+  ...attributes
+>
+  <div role="button" class="ember-tabella__header-column__title" {{on "click" this.sort}}>
+    {{@column.headerCellName}}
+
+    {{#if this.isSortable}}
+      <EmberTabella::HeaderSortIndicator 
+        @sort={{this.sortDirection}} 
+      />
+    {{/if}}
+  </div>
+
+  {{#if @column.isResizable}}
+    <EmberTabella::HeaderResizeHandle 
+      @onResize={{this.resize}}
+    />
+  {{/if}}
+</div>

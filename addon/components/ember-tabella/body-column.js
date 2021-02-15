@@ -1,42 +1,38 @@
-import Component from '@ember/component';
-import { get, computed } from '@ember/object';
-import layout from '../../templates/components/ember-tabella/body-column';
-import columnStyle from '../../utils/column-style';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { htmlSafe } from '@ember/string';
 
-export default Component.extend({
-  layout: layout,
-  classNames: 'ember-tabella__body-column',
-  classNameBindings: ['column.textAlign', 'column.isFixed:ember-tabella__body-column--fixed'],
-  attributeBindings: 'style',
-  scrollLeft: 0,
-  scrollTop: 0,
-  model: null,
+export default class EmberTabellaBodyColumn extends Component {
+  get style() {
+    let style = `width:${this.args.width}px;`;
 
-  style: computed('column.{width,isFixed}', 'scrollLeft', function() {
-    const width = get(this, 'column.width');
-    const isFixed = get(this, 'column.isFixed');
-    const scrollLeft = this.scrollLeft;
+    let column = this.args.column;
 
-    return columnStyle(width, isFixed, scrollLeft);
-  }),
+    if (column && column.offsetLeft) {
+      style += `left:${column.offsetLeft}px;`;
+    }
 
-  onCellClick() {},
+    return htmlSafe(style);
+  }
 
-  content: computed('model', 'column', function() {
-    const model = this.model;
-    const column = this.column;
+  get content() {
+    let model = this.args.model;
+    let column = this.args.column;
 
     if (!model || !column) {
-      return;
+      return '';
     }
 
     return column.getContent(model);
-  }),
-
-  click() {
-    const column = this.column;
-    const model = this.model;
-
-    this.onCellClick(column, model);
   }
-});
+
+  @action
+  click() {
+    if (this.args.onCellClick) {
+      let model = this.args.model;
+      let column = this.args.column;
+
+      this.args.onCellClick(column, model);
+    }
+  }
+}

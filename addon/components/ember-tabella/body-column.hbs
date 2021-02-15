@@ -1,0 +1,9 @@
+<div 
+  class="ember-tabella__body-column {{@column.textAlign}} {{if @column.isFixed "ember-tabella__body-column--fixed"}}" 
+  style={{this.style}}
+  ...attributes
+>
+  <div class="ember-tabella__cell-inner">
+    {{this.content}}
+  </div>
+</div>

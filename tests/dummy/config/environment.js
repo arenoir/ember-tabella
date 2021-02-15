@@ -30,8 +30,8 @@ module.exports = function (environment) {
     'connect-src': "'self'",
     'img-src': "'self'",
     'style-src': "'self' 'unsafe-inline'",
-    'media-src': "'self'"
-  }
+    'media-src': "'self'",
+  };
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -54,7 +54,7 @@ module.exports = function (environment) {
   if (environment === 'production') {
     ENV.locationType = 'hash';
     ENV.rootURL = '/ember-tabella/';
-    ENV.rootURL = '/ember-tabella'
+    ENV.rootURL = '/ember-tabella';
   }
 
   return ENV;

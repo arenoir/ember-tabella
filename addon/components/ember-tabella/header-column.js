@@ -1,95 +1,85 @@
-import { alias, or, readOnly, notEmpty, and } from '@ember/object/computed';
-import Component from '@ember/component';
-import { get, computed } from '@ember/object';
-import { isEqual } from '@ember/utils';
-import layout from '../../templates/components/ember-tabella/header-column';
-import columnStyle from '../../utils/column-style';
+import Component from '@glimmer/component';
+import { isEqual, isBlank } from '@ember/utils';
+import { htmlSafe } from '@ember/string';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  layout: layout,
-  scrollLeft: 0,
-  scrollTop: 0,
+export default class EmberTabellaHeaderColumn extends Component {
+  get minWidth() {
+    return this.args.column.minWidth || 50;
+  }
 
-  classNames: ['ember-tabella__header-column'],
-  classNameBindings: [
-    'isSortable:ember-tabella__header-column--sortable',
-    'isSorted:ember-tabella__header-column--sorted',
-    'sortedClassName',
-    'isResizable:ember-tabella__header-column--resizable',
-    'column.isFixed:ember-tabella__header-column--fixed'
-  ],
-  attributeBindings: ['style'],
+  get isResizable() {
+    return this.args.column.isResizable;
+  }
 
-  column: null,
-  width: alias('column.width'),
-  defaultMinWidth: 50,
-  minWidth: or('column.minWidth', 'defaultMinWidth'),
-  isResizable: readOnly('column.isResizable'),
-  sortedColumn: null,
-  isSortable: notEmpty('column.sortProperties'),
-  isSortReversed: false,
-  _isSortReversed: and('isSortReversed', 'isSorted'),
+  get isSortable() {
+    return !isBlank(this.args.column.sortProperties);
+  }
 
-  style: computed('column.{width,isFixed}', 'scrollLeft', function() {
-    const width = get(this, 'column.width');
-    const isFixed = get(this, 'column.isFixed');
-    const scrollLeft = this.scrollLeft;
+  get isSortReversed() {
+    return this.args.isSortReversed && this.isSorted;
+  }
 
-    return columnStyle(width, isFixed, scrollLeft);
-  }),
+  get style() {
+    let column = this.args.column;
+    let width = this.args.width || 0;
+    let style = `width:${width}px;`;
 
-  onColumnSort() {},
+    if (column.offsetLeft >= 0) {
+      let offset = column.offsetLeft + this.args.scrollLeft;
+      style += `left:${offset}px;`;
+    }
 
-  isSorted: computed('sortedColumn', 'column', function() {
-    const scolumn = this.sortedColumn;
-    const column  = this.column;
+    return htmlSafe(style);
+  }
 
-    return isEqual(scolumn, column);
-  }),
+  get isSorted() {
+    let scolumn = this.args.sortedColumn;
+    let column = this.args.column;
 
-  sortDirection: computed('isSorted', '_isSortReversed', function() {
+    if (scolumn && column) {
+      return isEqual(scolumn, column);
+    }
+
+    return false;
+  }
+
+  get sortDirection() {
     if (!this.isSorted) {
       return null;
     }
-    if (this._isSortReversed) {
+    if (this.isSortReversed) {
       return 'desc';
     }
     return 'asc';
-  }),
+  }
 
-  sortedClassName: computed('sortDirection', function() {
-    const direction = this.sortDirection;
+  get sortedClassName() {
+    let direction = this.sortDirection;
 
     if (!direction) {
-      return;
+      return '';
     }
 
     return `ember-tabella__header-column--sorted-${direction}`;
-  }),
+  }
 
-  actions: {
-    resize(offsetX) {
-      const mWidth = this.minWidth;
-      const width  = this.width;
+  @action
+  resize(offsetX) {
+    this.args.onColumnResize(this.args.column, offsetX);
+  }
 
-      let nWidth = width + (offsetX || 0);
+  @action
+  sort() {
+    if (!this.isSortable) {
+      return;
+    }
 
-      if (nWidth <= mWidth) {
-        nWidth = mWidth;
-      }
+    let column = this.args.column;
+    let asc = this.isSortReversed;
 
-      this.set('width', nWidth);
-    },
-
-    sort() {
-      if (!this.isSortable) {
-        return;
-      }
-
-      const column = this.column;
-      const asc    = this.isSortReversed;
-
-      this.onColumnSort(column, !asc);
+    if (this.args.onColumnSort) {
+      this.args.onColumnSort(column, !asc);
     }
   }
-});
+}

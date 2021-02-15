@@ -1,28 +1,20 @@
-import Component from '@ember/component';
-import { computed } from '@ember/object';
-import layout from '../../templates/components/ember-tabella/header-sort-indicator';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  layout: layout,
-  tagName: 'span',
-  sort: null,
-  classNames: ['ember-tabella__header-sort-indicator'],
-  classNameBindings: ['sortClass'],
-
-  sortClass: computed('sort', function() {
-    const sort = this.sort;
+export default class EmberTabellaSortIndicator extends Component {
+  get sortClass() {
+    let sort = this.args.sort;
 
     if (sort) {
       return `ember-tabella__header-sort-indicator--${sort}`;
     } else {
       return '';
     }
-  }),
+  }
 
-  content: computed('sort', function() {
-    const sort = this.sort;
+  get content() {
+    let sort = this.args.sort;
 
-    switch(sort) {
+    switch (sort) {
       case 'desc':
         return '↓';
       case 'asc':
@@ -30,6 +22,5 @@ export default Component.extend({
       default:
         return '↕';
     }
-  })
-
-});
+  }
+}

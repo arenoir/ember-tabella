@@ -16,7 +16,18 @@
   <div class="row">
     <div class="col-md-12">
       <div class="example-container">
-        <EmberTabella @numFixedColumns={{2}} @width={{500}} @height={{500}} @rowHeight={{50}} @content={{tableContent}} @columns={{tableColumns}} @hasFooter={{false}} @sortedColumn={{sortedColumn}} @isSortReversed={{_desc}} @onColumnSort={{action "sort"}} />
+        <EmberTabella 
+          @numFixedColumns={{2}} 
+          @width={{500}} 
+          @height={{500}} 
+          @rowHeight={{50}} 
+          @content={{this.tableContent}} 
+          @columns={{this.tableColumns}} 
+          @hasFooter={{false}} 
+          @sortedColumn={{this.sortedColumn}} 
+          @isSortReversed={{this._desc}} 
+          @onColumnSort={{action "sort"}} 
+        />
       </div>
     </div>
 

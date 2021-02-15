@@ -1,0 +1,30 @@
+<div class="ember-tabella" ...attributes>
+  {{#if this.hasHeader}}
+    <div class="ember-tabella__header">
+      <EmberTabella::HeaderRow 
+        @columns={{this.columns}} 
+        @height={{this.headerHeight}} 
+        @width={{this.headerRowWith}} 
+        @scrollLeft={{this.scrollLeft}} 
+        @sortedColumn={{@sortedColumn}} 
+        @isSortReversed={{@isSortReversed}} 
+        @onColumnSort={{this.onColumnSort}} 
+        @onColumnResize={{this.onColumnResize}}
+      />
+    </div>
+  {{/if}}
+
+  <EmberTabella::Body 
+    @content={{@content}} 
+    @columns={{this.columns}} 
+    @height={{this.bodyHeight}} 
+    @width={{this.rowWidth}} 
+    @rowWidth={{this.rowWidth}} 
+    @rowHeight={{this.rowHeight}} 
+    @scrollLeft={{this.scrollLeft}} 
+    @scrollTop={{this.scrollTop}} 
+    @onScroll={{this.onScroll}} 
+    @onColumnSort={{this.onColumnSort}} 
+    @onCellClick={{this.onCellClick}} 
+  />
+</div>

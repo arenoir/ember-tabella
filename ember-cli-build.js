@@ -1,9 +1,10 @@
+/* eslint-disable no-redeclare */
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-addon');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   var app = new EmberApp(defaults, {
-    snippetPaths: ['tests/dummy/app']
+    snippetPaths: ['tests/dummy/app'],
   });
 
   /*

@@ -1,0 +1,16 @@
+<div class="ember-tabella__header-row" style={{this.style}}>
+  {{#each @columns as |column|}}
+    {{component column.headerTemplateName
+      column=column
+      height=@height
+      width=column.width
+      scrollLeft=@scrollLeft
+      columnMode=@columnMode
+      columnsFillTable=@columnsFillTable
+      sortedColumn=@sortedColumn
+      isSortReversed=@isSortReversed
+      onColumnSort=@onColumnSort
+      onColumnResize=@onColumnResize
+    }}
+  {{/each}}
+</div>
