@@ -1,70 +1,71 @@
-/* eslint-disable ember/no-classic-classes */
-/* eslint-disable ember/no-actions-hash */
+/* eslint-disable ember/no-computed-properties-in-native-classes*/
+
 // BEGIN-SNIPPET simple-controller
 import { sort } from '@ember/object/computed';
 import { A } from '@ember/array';
 import Controller from '@ember/controller';
-import EmberObject, { computed } from '@ember/object';
+import EmberObject from '@ember/object';
 import { isEqual } from '@ember/utils';
 import ColumnDefinition from 'ember-tabella/models/column';
 import { randomNumber, randomDate } from '../utils/random';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  queryParams: ['_sort', '_desc'],
-  _sort: '',
-  _desc: false,
+export default class MaterialsController extends Controller {
+  queryParams = ['_sort', '_desc'];
+  @tracked _sort = '';
+  @tracked _desc = false;
 
-  tableColumns: computed(function () {
-    var dateColumn = ColumnDefinition.create({
+  tableColumns = A([
+    ColumnDefinition.create({
       id: 'date',
       width: 150,
       textAlign: 'text-align-left',
       headerCellName: 'Date',
       sortProperties: ['date', 'high:desc'],
       getContent: function (row) {
-        return row.get('date').toDateString();
+        return row.date.toDateString();
       },
-    });
-    var openColumn = ColumnDefinition.create({
+    }),
+    ColumnDefinition.create({
       id: 'open',
       width: 75,
       headerCellName: 'Open',
       isResizable: true,
       getContent: function (row) {
-        return row.get('open').toFixed(2);
+        return row.open.toFixed(2);
       },
-    });
-    var highColumn = ColumnDefinition.create({
+    }),
+    ColumnDefinition.create({
       id: 'high',
       width: 200,
       headerCellName: 'High',
       sortProperties: ['high'],
       getContent: function (row) {
-        return row.get('high').toFixed(2);
+        return row.high.toFixed(2);
       },
-    });
-    var lowColumn = ColumnDefinition.create({
+    }),
+    ColumnDefinition.create({
       id: 'low',
       width: 200,
       headerCellName: 'Low',
       getContent: function (row) {
-        return row.get('low').toFixed(2);
+        return row.low.toFixed(2);
       },
-    });
-    var closeColumn = ColumnDefinition.create({
+    }),
+    ColumnDefinition.create({
       id: 'close',
       width: 200,
       headerCellName: 'Close',
       getContent: function (row) {
-        return row.get('close').toFixed(2);
+        return row.close.toFixed(2);
       },
-    });
-    return A([dateColumn, openColumn, highColumn, lowColumn, closeColumn]);
-  }),
+    }),
+  ]);
 
-  content: computed(function () {
-    var content = A([]);
-    var date;
+  get content() {
+    let content = A([]);
+    let date;
     for (var i = 0; i < 5000; i++) {
       date = randomDate(new Date(2000, 1, 5), new Date());
       content.push(
@@ -79,45 +80,35 @@ export default Controller.extend({
       );
     }
     return content;
-  }),
+  }
 
-  sortedColumn: computed('_sort', 'tableColumns.@each.id', function () {
-    let sort = this._sort;
-    let columns = this.tableColumns;
+  get sortedColumn() {
+    return this.tableColumns.findBy('id', this._sort);
+  }
 
-    return columns.findBy('id', sort);
-  }),
-
-  sortProperties: computed('sortedColumn', function () {
-    let column = this.sortedColumn;
-
-    if (column) {
-      return column.get('sortProperties');
+  get sortProperties() {
+    if (this.sortedColumn) {
+      return this.sortedColumn.sortProperties;
     }
 
     return [];
-  }),
+  }
 
-  sorted: sort('content', 'sortProperties'),
+  @sort('content', 'sortProperties') sorted;
 
-  tableContent: computed('sorted.[]', '_desc', function () {
-    let sorted = this.sorted;
-    let desc = this._desc;
-
-    if (isEqual(desc, false)) {
-      return sorted.toArray().reverse();
+  get tableContent() {
+    if (isEqual(this._desc, false)) {
+      return this.sorted.toArray().reverse();
     }
 
-    return sorted;
-  }),
+    return this.sorted;
+  }
 
-  actions: {
-    sort(column, desc) {
-      let id = column.get('id');
-
-      if (id) {
-        this.transitionToRoute({ queryParams: { _sort: id, _desc: desc } });
-      }
-    },
-  },
-});
+  @action
+  sort(column, desc) {
+    let id = column.get('id');
+    if (id) {
+      this.transitionToRoute({ queryParams: { _sort: id, _desc: desc } });
+    }
+  }
+}
