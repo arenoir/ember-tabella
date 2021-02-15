@@ -1,7 +1,7 @@
 # ember-tabella changelog
 
-### 1.1.3 (2021-02-14)
-Upgrade ember to 3.24 LTS.
+### 2.0.0-beta (2021-02-14)
+Upgrade to glimmer components and native classes.
 
 ### 1.1.1 (2020-05-03)
 Upgrade ember to 3.16 LTS.
