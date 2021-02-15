@@ -4,6 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { htmlSafe } from '@ember/string';
 import { A } from '@ember/array';
 import { isEmpty } from '@ember/utils';
+import { typeOf } from '@ember/utils';
 
 function calculateWidth(columns) {
   if (isEmpty(columns)) {
@@ -113,24 +114,27 @@ export default class EmberTabellaBody extends Component {
   @tracked __scrollTop__;
 
   get scrollTop() {
-    return this.args.scrollTop || this.__scrollTop__;
+    if (typeOf(this.args.scrollTop) === 'number') {
+      return this.args.scrollTop;
+    }
+    return this.__scrollTop__;
   }
 
   get scrollLeft() {
-    return this.args.scrollLeft || this.__scrollLeft__;
+    if (typeOf(this.args.scrollLeft) === 'number') {
+      return this.args.scrollLeft;
+    }
+
+    return this.__scrollLeft__;
   }
 
   @action
   onScroll(left, top) {
-    this.__scrollLeft__ = left;
-    this.__scrollTop__ = top;
-
     if (this.args.onScroll) {
       this.args.onScroll(left, top);
-    }
-
-    if (left !== this.scrollLeft) {
-      this.element.querySelector('.ember-tabella__header').scrollLeft = left;
+    } else {
+      this.__scrollLeft__ = left;
+      this.__scrollTop__ = top;
     }
   }
 
