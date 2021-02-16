@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { isEqual, isBlank } from '@ember/utils';
-import { htmlSafe } from '@ember/string';
 import { action } from '@ember/object';
+import columnStyle from 'ember-tabella/utils/column-style';
 
 export default class EmberTabellaHeaderColumn extends Component {
   get minWidth() {
@@ -21,16 +21,7 @@ export default class EmberTabellaHeaderColumn extends Component {
   }
 
   get style() {
-    let column = this.args.column;
-    let width = this.args.width || 0;
-    let style = `width:${width}px;`;
-
-    if (column.offsetLeft >= 0) {
-      let offset = column.offsetLeft + this.args.scrollLeft;
-      style += `left:${offset}px;`;
-    }
-
-    return htmlSafe(style);
+    return columnStyle(this.args.width, this.args.column.offsetLeft);
   }
 
   get isSorted() {

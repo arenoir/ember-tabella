@@ -1,4 +1,5 @@
 import EmberObject, { get } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class Column extends EmberObject {
   columnName;
@@ -9,7 +10,9 @@ export default class Column extends EmberObject {
   textAlign = 'text-align-right';
   templateName = 'ember-tabella/body-column';
   headerTemplateName = 'ember-tabella/header-column';
-  width = 150;
+
+  @tracked width = 150;
+  @tracked offsetLeft = 0;
 
   getContent(model) {
     let path = this.contentPath;

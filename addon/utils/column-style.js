@@ -1,9 +1,10 @@
 import { htmlSafe } from '@ember/string';
+import { typeOf } from '@ember/utils';
 
-export default function columnStyle(width, isFixed, scrollLeft) {
+export default function columnStyle(width, scrollLeft = undefined) {
   let style = `width:${width}px;`;
 
-  if (isFixed) {
+  if (typeOf(scrollLeft) === 'number') {
     style += `left:${scrollLeft}px;`;
   }
 

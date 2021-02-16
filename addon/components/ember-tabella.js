@@ -58,9 +58,9 @@ export default class EmberTabellaBody extends Component {
     this.fixedColumns.forEach((column) => {
       column.isFixed = true;
       column.offsetLeft = offset;
+      column.isFixed = true;
       offset += column.width || 0;
     });
-    this.fixedColumns.setEach('isFixed', true);
   }
 
   get columns() {
@@ -79,10 +79,6 @@ export default class EmberTabellaBody extends Component {
 
     return A(columns.slice(0, length));
   }
-
-  // _fixedColumnsWidth: computed('fixedColumns.@each.width', function() {
-  //   return calculateWidth(this.fixedColumns);
-  // }),
 
   @tracked rowWidth = 0;
 
@@ -155,7 +151,12 @@ export default class EmberTabellaBody extends Component {
       nWidth = mWidth;
     }
 
-    column.set('width', nWidth);
+    column.width = nWidth;
     this.rowWidth = calculateWidth(this.columns);
+    this.markFixedColumns();
+  }
+
+  setHeaderScrollLeft(element, [scrollLeft]) {
+    element.scrollLeft = scrollLeft;
   }
 }

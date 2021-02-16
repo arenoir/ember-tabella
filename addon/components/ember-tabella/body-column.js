@@ -1,18 +1,10 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { htmlSafe } from '@ember/string';
+import columnStyle from 'ember-tabella/utils/column-style';
 
 export default class EmberTabellaBodyColumn extends Component {
   get style() {
-    let style = `width:${this.args.width}px;`;
-
-    let column = this.args.column;
-
-    if (column && column.offsetLeft) {
-      style += `left:${column.offsetLeft}px;`;
-    }
-
-    return htmlSafe(style);
+    return columnStyle(this.args.width, this.args.column.offsetLeft);
   }
 
   get content() {

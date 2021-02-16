@@ -1,6 +1,6 @@
 {
   "name": "ember-tabella",
-  "version": "v2.0.0-beta.1",
+  "version": "v2.0.0-beta.2",
   "description": "Table component utilizing ember-collection.",
   "directories": {
     "doc": "doc",
@@ -70,6 +70,7 @@
     "table"
   ],
   "dependencies": {
+    "@ember/render-modifiers": "^1.0.2",
     "ember-cli-babel": "^7.23.0",
     "ember-cli-htmlbars": "^5.3.1",
     "ember-collection": "^1.0.0"

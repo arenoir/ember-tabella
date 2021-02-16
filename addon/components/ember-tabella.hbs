@@ -1,6 +1,6 @@
 <div class="ember-tabella" ...attributes>
   {{#if this.hasHeader}}
-    <div class="ember-tabella__header">
+    <div class="ember-tabella__header" {{did-update this.setHeaderScrollLeft this.scrollLeft}}>
       <EmberTabella::HeaderRow 
         @columns={{this.columns}} 
         @height={{this.headerHeight}} 
