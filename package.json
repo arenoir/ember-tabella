@@ -83,5 +83,8 @@
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "demoURL": "http://arenoir.github.io/ember-tabella/"
+  },
+  "volta": {
+    "node": "14.17.2"
   }
 }
