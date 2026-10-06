@@ -10,8 +10,11 @@ import ColumnDefinition from 'ember-tabella/models/column';
 import { randomNumber, randomDate } from '../utils/random';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 export default class MaterialsController extends Controller {
+  @service router;
+
   queryParams = ['_sort', '_desc'];
   @tracked _sort = '';
   @tracked _desc = false;
@@ -108,7 +111,7 @@ export default class MaterialsController extends Controller {
   sort(column, desc) {
     let id = column.get('id');
     if (id) {
-      this.transitionToRoute({ queryParams: { _sort: id, _desc: desc } });
+      this.router.transitionTo({ queryParams: { _sort: id, _desc: desc } });
     }
   }
 }

@@ -2,7 +2,7 @@ import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Column from 'ember-tabella/models/column';
 
 module('Integration | Component | ember tabella/body column', function (hooks) {
@@ -23,7 +23,7 @@ module('Integration | Component | ember tabella/body column', function (hooks) {
     this.set('model', model);
 
     await render(
-      hbs`{{ember-tabella/body-column column=column width=column.width model=model}}`
+      hbs`<EmberTabella::BodyColumn @column={{this.column}} @width={{this.column.width}} @model={{this.model}} />`
     );
 
     assert.dom('*').hasText('my name', 'content based on contentPath');

@@ -4,3 +4,15 @@ html, body {
 }
 
 @import 'ember-tabella';
+.ember-tabella__header-resize-handle {
+  border-left: 3px dotted #ccc;
+  background: #fff;
+}
+
+.ember-tabella__header {
+  border-bottom: 1px solid #ccc;
+}
+
+.example-container {
+  width: 600px;
+}

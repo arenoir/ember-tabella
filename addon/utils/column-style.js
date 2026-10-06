@@ -1,4 +1,4 @@
-import { htmlSafe } from '@ember/string';
+import { htmlSafe } from '@ember/template';
 import { typeOf } from '@ember/utils';
 
 export default function columnStyle(width, scrollLeft = undefined) {

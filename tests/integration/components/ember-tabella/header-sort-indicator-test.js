@@ -1,16 +1,19 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | ember tabella/header sort indicator', function (hooks) {
-  setupRenderingTest(hooks);
+module(
+  'Integration | Component | ember tabella/header sort indicator',
+  function (hooks) {
+    setupRenderingTest(hooks);
 
-  test('it renders', async function (assert) {
-    assert.expect(1);
+    test('it renders', async function (assert) {
+      assert.expect(1);
 
-    await render(hbs`{{ember-tabella/header-sort-indicator}}`);
+      await render(hbs`<EmberTabella::HeaderSortIndicator />`);
 
-    assert.dom('*').hasText('↕');
-  });
-});
+      assert.dom('*').hasText('↕');
+    });
+  }
+);

@@ -2,7 +2,7 @@ import { A } from '@ember/array';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Column from 'ember-tabella/models/column';
 
 module('Integration | Component | ember tabella/header-row', function (hooks) {
@@ -23,9 +23,7 @@ module('Integration | Component | ember tabella/header-row', function (hooks) {
 
     this.set('columns', columns);
 
-    await render(hbs`{{ember-tabella/header-row
-      columns=columns
-    }}`);
+    await render(hbs`<EmberTabella::HeaderRow @columns={{this.columns}} />`);
 
     assert
       .dom('.ember-tabella__header-column')
