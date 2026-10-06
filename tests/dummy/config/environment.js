@@ -54,7 +54,6 @@ module.exports = function (environment) {
   if (environment === 'production') {
     ENV.locationType = 'hash';
     ENV.rootURL = '/ember-tabella/';
-    ENV.rootURL = '/ember-tabella';
   }
 
   return ENV;
