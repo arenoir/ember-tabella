@@ -16,6 +16,12 @@ Table component for ember built using ember-collection.
 - Resizable columns
 - Scroll Tracking
 
+## Compatibility
+
+- Ember.js v4.4 or above
+- Ember CLI v4.12 or above
+- Node.js v18 or above
+
 ## Installation
 
 `ember install ember-tabella`

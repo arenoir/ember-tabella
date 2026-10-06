@@ -2,6 +2,7 @@
   role="button"
   class="ember-tabella__header-resize-handle" 
   draggable="true"
+  {{! template-lint-disable no-pointer-down-event-binding }}
   {{on "mousedown" this.mouseDown}}
 >
 </div>
