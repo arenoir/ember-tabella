@@ -1,0 +1,28 @@
+name: Publish to npm
+on:
+  release:
+    types: [published]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Set version from release tag
+        run: npm version ${GITHUB_REF_NAME#v} --no-git-tag-version --ignore-scripts
+      # Pre-releases (e.g. 2.0.0-beta.3) go to the "beta" dist-tag so they
+      # don't become "latest".
+      - name: Publish
+        run: |
+          if [[ "$GITHUB_REF_NAME" == *-* ]]; then
+            npm publish --tag beta
+          else
+            npm publish
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
