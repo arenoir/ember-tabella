@@ -2,7 +2,7 @@
 
 Table component for ember built using ember-collection.
 
-[![Build Status](https://travis-ci.org/arenoir/ember-tabella.svg?branch=master)](https://travis-ci.org/arenoir/ember-tabella) [![Code Climate](https://codeclimate.com/github/arenoir/ember-tabella/badges/gpa.svg)](https://codeclimate.com/github/arenoir/ember-tabella)
+[![Test](https://github.com/arenoir/ember-tabella/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/arenoir/ember-tabella/actions/workflows/test.yml) [![Code Climate](https://codeclimate.com/github/arenoir/ember-tabella/badges/gpa.svg)](https://codeclimate.com/github/arenoir/ember-tabella)
 
 ## Demo
 
